@@ -1,7 +1,9 @@
 /* Global Styles */
 :root {
-    --primary-color: #17a2b8;
-    --dark-color: #343a40;
+    /* --primary-color: #17a2b8;
+    --dark-color: #343a40; */
+    --primary-color: #C4820E;
+    --dark-color: #0C3262;
     --light-color: #f4f4f4;
     --danger-color: #dc3545;
     --success-color: #28a745;
@@ -15,11 +17,16 @@
 
 body {
     font-family: 'Raleway', sans-serif;
+    /* font-variant: small-caps; */
     font-size: 1rem;
     line-height: 1.6;
     background-color: #fff;
     color: #333;
 }
+
+/* body:first-letter {
+    text-transform: uppercase;
+} */
 
 a {
     color: var(--primary-color);
@@ -149,6 +156,7 @@ img {
     background: var(--light-color);
     color: #333;
     padding: 0.4rem 1.3rem;
+    /* padding: 0.5rem; */
     font-size: 1rem;
     border: none;
     cursor: pointer;
@@ -198,12 +206,19 @@ img {
     color: #fff;
 }
 
+.btn-del {
+    /* background: var(--danger-color); */
+    background: none;
+    color: var(--danger-color);
+}
+
 .btn-danger,
 .bg-danger,
 .badge-danger,
 .alert-danger {
     background: var(--danger-color);
-    color: #fff;
+    /* background: none; */
+    color: white;
 }
 
 .btn-success,
@@ -332,6 +347,7 @@ button {
     top: 0;
     border-bottom: solid 1px var(--primary-color);
     opacity: 0.9;
+    /* color: red; */
 }
 
 .navbar ul {
@@ -339,7 +355,7 @@ button {
 }
 
 .navbar a {
-    color: #fff;
+    color: orange;
     padding: 0.45rem;
     margin: 0 0.25rem;
 }
@@ -597,4 +613,8 @@ button {
     .post button {
         padding: 0.3rem 0.4rem;
     }
+}
+
+i {
+    padding-right: .25rem;
 }
