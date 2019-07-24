@@ -11,19 +11,19 @@ const Education = ({ education, deleteEducation }) => {
       <td>{edu.school}</td>
       <td className='hide-sm'>{edu.degree}</td>
       <td>
-        <Moment format='YYYY/MM/DD'>{moment.utc(edu.from)}</Moment> -{' '}
+        <Moment format='MM/DD/YYYY'>{moment.utc(edu.from)}</Moment> -{' '}
         {edu.to === null ? (
           ' Now'
         ) : (
-          <Moment format='YYYY/MM/DD'>{moment.utc(edu.to)}</Moment>
+          <Moment format='MM/DD/YYYY'>{moment.utc(edu.to)}</Moment>
         )}
       </td>
-      <td>
+      <td className='td-del'>
         <button
           onClick={() => deleteEducation(edu._id)}
           className='btn btn-del'
         >
-          <i class='fas fa-minus-circle' />
+          <i className='fas fa-minus-circle' />
         </button>
       </td>
     </tr>
@@ -31,14 +31,14 @@ const Education = ({ education, deleteEducation }) => {
 
   return (
     <Fragment>
-      <h2 className='my-2'>Education Credentials</h2>
+      <h2 className='my-2'>Education</h2>
       <table className='table'>
         <thead>
           <tr>
             <th>School</th>
             <th className='hide-sm'>Degree</th>
             <th className='hide-sm'>Years</th>
-            <th />
+            {/* <th /> */}
           </tr>
         </thead>
         <tbody>{educations}</tbody>

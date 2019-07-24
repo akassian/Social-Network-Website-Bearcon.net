@@ -9,7 +9,7 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
 
-//@route GET api/profile/me
+//@route GET api/profile/m
 //@desc Get curr users profile
 //@access private
 
@@ -166,7 +166,7 @@ router.delete('/', auth, async (req, res) => {
 //@route Put api/profile/experience
 //@desc Add profile/user/posts
 //@access private
-router.put(
+router.post(
   '/experience',
   [
     auth,
@@ -239,7 +239,7 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
 //@route Put api/profile/education
 //@desc Add profile education
 //@access private
-router.put(
+router.post(
   '/education',
   [
     auth,
