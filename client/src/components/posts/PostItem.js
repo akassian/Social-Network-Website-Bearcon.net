@@ -23,7 +23,7 @@ const PostItem = ({
     <div>
       <p className='my-1'>{text}</p>
       <p className='post-date'>
-        Posted on <Moment format='MM/DD/YYYY'>{date}</Moment>
+        Posted on <Moment format='lll'>{date}</Moment>
       </p>
 
       {showActions && (
@@ -53,9 +53,9 @@ const PostItem = ({
             <button
               onClick={() => deletePost(_id)}
               type='button'
-              className='btn btn-danger'
+              className='btn-del rightside'
             >
-              <i className='fas fa-times' />
+              <i className='fa fa-times-circle' />
             </button>
           )}
         </Fragment>
