@@ -204,6 +204,12 @@ img {
 .bg-light,
 .badge-light,
 .alert-light {
+    /* background: var(--light-color); */
+    background: #fff;
+    color: #333;
+}
+
+.btn-gray {
     background: var(--light-color);
     /* background: #fff; */
     color: #333;
@@ -245,7 +251,19 @@ img {
 
 .rightside {
     float: right;
+    /* padding-top: 1rem; */
+}
+
+.top1rem {
     padding-top: 1rem;
+}
+
+.leftside {
+    float: left;
+}
+
+.inblock {
+    display: inline-block;
 }
 
 .btn-danger,

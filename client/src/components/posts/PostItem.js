@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { addLike, removeLike, deletePost } from '../../actions/post';
 
@@ -23,7 +24,13 @@ const PostItem = ({
     <div>
       <p className='my-1'>{text}</p>
       <p className='post-date'>
-        Posted on <Moment format='lll'>{date}</Moment>
+        {/* Posted on <Moment format='lll'>{date}</Moment>
+         */}
+        {/* <Moment fromNow>{moment.utc(date)}</Moment> */}
+        <Moment fromNow>{date}</Moment>
+        {/* <p>Posted {moment(date).calendar()}</p>
+        <div>Posted {moment(date).format('MM/DD/YYYY')}</div>
+        Posted on <Moment format='lll'>{date}</Moment> */}
       </p>
 
       {showActions && (
@@ -31,7 +38,7 @@ const PostItem = ({
           <button
             onClick={() => addLike(_id)}
             type='button'
-            className='btn btn-light'
+            className='btn btn-gray'
           >
             <i className='fas fa-thumbs-up' />{' '}
             <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
@@ -39,7 +46,7 @@ const PostItem = ({
           <button
             onClick={() => removeLike(_id)}
             type='button'
-            className='btn btn-light'
+            className='btn btn-gray'
           >
             <i className='fas fa-thumbs-down' />
           </button>
@@ -53,7 +60,7 @@ const PostItem = ({
             <button
               onClick={() => deletePost(_id)}
               type='button'
-              className='btn-del rightside'
+              className='btn-del rightside top1rem'
             >
               <i className='fa fa-times-circle' />
             </button>
