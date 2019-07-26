@@ -16,7 +16,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
-          <h1 className='large text-primary'>Users</h1>
+          <h1 className='large text-primary'>Profiles</h1>
           <p className='lead'>
             <i className='fas fa-user-friends' /> Browse and connect with our
             fellow alumni
