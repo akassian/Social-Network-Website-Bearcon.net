@@ -4,13 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 
-import { deleteAccount } from '../../actions/profile';
-import Spinner from '../layout/Spinner';
-import DashboardActions from '../dashboard/DashboardActions';
-
-import Experience from '../dashboard/Experience';
-import Education from '../dashboard/Education';
-
 const EditProfile = ({
   profile: { profile, loading },
   createProfile,

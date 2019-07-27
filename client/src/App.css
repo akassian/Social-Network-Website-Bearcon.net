@@ -86,6 +86,10 @@ img {
     color: var(--primary-color);
 }
 
+.text-success {
+    color: var(--success-color);
+}
+
 .text-dark {
     color: var(--dark-color);
 }
@@ -145,7 +149,6 @@ img {
 }
 
 .my-1 {
-
     margin: 1rem 0;
 }
 
@@ -492,7 +495,7 @@ button {
     grid-gap: 1rem;
 }
 
-/* .edit-grid {
+.edit-grid {
     display: grid;
     grid-template-areas:
         'tp tp'
@@ -511,21 +514,21 @@ button {
 
 .edit-exp {
     grid-area: xp;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    text-align: center; */
 }
 
 .edit-edu {
     grid-area: ed;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-} */
+    text-align: center; */
+}
 
 .profile-top {
     grid-area: top;
@@ -620,6 +623,8 @@ button {
     grid-template-columns: 1fr 4fr;
     grid-gap: 2rem;
     align-items: center;
+    word-break: break-all;
+    word-wrap: break-word;
 }
 
 .post>div:first-child {

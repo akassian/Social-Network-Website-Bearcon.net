@@ -90,8 +90,8 @@ const EditProfile = ({
       {profile !== null ? (
         <Fragment>
           <p className='lead'>
-            <i className='fas fa-user' />
-            Welcome {user && user.name}, let's make your profile stand out
+            <i className='fas fa-user' /> Welcome {user && user.name}, let's
+            make your profile stand out
           </p>
 
           {/* <Fragment> */}
@@ -271,20 +271,29 @@ const EditProfile = ({
           <div className='edit-grid'>
             {/* <DashboardActions className='edit-top' /> */}
 
-            <h2 className='my-2'>Experience</h2>
-            <Link to='/add-experience' className='btn btn-light'>
-              <i className='fab fa-black-tie text-primary' /> Add Experience
-            </Link>
+            <div className='edit-exp'>
+              {/* <h2 className='my-2'>Experience</h2> */}
+              <p className='lead'>
+                <i className='fab fa-black-tie text-primary' /> Experience
+              </p>
+              <Link to='/add-experience' className='btn btn-light'>
+                <i className='fas fa-plus-circle' /> Add Experience
+              </Link>
 
-            <Experience experience={profile.experience} className='edit-exp' />
+              <Experience experience={profile.experience} />
+            </div>
 
             {/* =========== */}
-            <h2 className='my-2'>Education</h2>
-            <Link to='/add-education' className='btn btn-light'>
-              <i className='fas fa-graduation-cap text-primary' /> Add Education
-            </Link>
+            <div className='edit-edu'>
+              <p className='lead'>
+                <i className='fas fa-graduation-cap  text-primary' /> Education
+              </p>
+              <Link to='/add-education' className='btn btn-light'>
+                <i className='fas fa-plus-circle' /> Add Education
+              </Link>
 
-            <Education education={profile.education} className='edit-edu' />
+              <Education education={profile.education} className='edit-edu' />
+            </div>
           </div>
 
           <div className='my-2'>

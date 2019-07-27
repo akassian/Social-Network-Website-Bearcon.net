@@ -34,12 +34,18 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           </span>
         </Link>
       </li>
+
       <li>
         <a onClick={logout} href='#!'>
           {''}
           <i className='fas fa-sign-out-alt' />
           <span className='hide-sm'>Logout</span>
         </a>
+      </li>
+      <li>
+        <Link to='/about'>
+          <i className='fas fa-info-circle' />
+        </Link>
       </li>
     </ul>
   );
@@ -60,7 +66,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className='navbar bg-dark'>
       <h1>
         <Link to='/'>
-          <i className='fas fa-paw'>BC</i>
+          <i className='fas fa-paw'> BC</i>
         </Link>
       </h1>
       {!loading && (
