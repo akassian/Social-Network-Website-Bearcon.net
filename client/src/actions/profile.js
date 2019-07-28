@@ -199,7 +199,7 @@ export const addEducation = (formData, history) => async dispatch => {
 // Delete experience
 export const deleteExperience = id => async dispatch => {
   try {
-    const res = await axios.post(
+    const res = await axios.delete(
       `http://localhost:5000/api/profile/experience/${id}`
     );
 
@@ -220,7 +220,7 @@ export const deleteExperience = id => async dispatch => {
 // Delete education
 export const deleteEducation = id => async dispatch => {
   try {
-    const res = await axios.post(
+    const res = await axios.delete(
       `http://localhost:5000/api/profile/education/${id}`
     );
 

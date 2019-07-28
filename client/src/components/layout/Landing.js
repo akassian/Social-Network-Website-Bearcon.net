@@ -11,7 +11,7 @@ const Landing = ({ isAuthenticated }) => {
     <section className='landing'>
       <div className='dark-overlay'>
         <div className='landing-inner'>
-          <h1 className='large'>BearCon</h1>
+          <h1 className='large'>Bearcon</h1>
           <p className='lead'>Cal Bears share and connect</p>
           <div className='buttons'>
             <Link to='/register' className='btn btn-primary'>

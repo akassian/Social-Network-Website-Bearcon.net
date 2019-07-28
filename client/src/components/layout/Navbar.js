@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const authLinks = (
     <ul>
       <li>
@@ -26,13 +26,15 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Link>
       </li>
       <li>
-        <Link to='/dashboard'>
-          <i className='fas fa-user' />
-          <span className='hide-sm'>
-            {''}
-            Profile
-          </span>
-        </Link>
+        {isAuthenticated && loading === false && (
+          <Link to={`/profile/${user._id}`}>
+            <i className='fas fa-user' />
+            <span className='hide-sm'>
+              {''}
+              Profile
+            </span>
+          </Link>
+        )}
       </li>
 
       <li>
@@ -52,13 +54,32 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to='/profiles'>Profiles</Link>
+        <Link to='/profiles'>
+          <i className='fas fa-paw' />
+          <span className='hide-sm'>
+            {''}
+            Profiles
+          </span>
+        </Link>
       </li>
       <li>
-        <Link to='/register'>Register</Link>
+        <Link to='/register'>
+          {''}
+          <i className='fas fa-user-plus' />
+          <span className='hide-sm'>Register</span>
+        </Link>
       </li>
       <li>
-        <Link to='/login'>Login</Link>
+        <Link to='/login'>
+          {''}
+          <i className='fas fa-sign-in-alt' />
+          <span className='hide-sm'>Login</span>
+        </Link>
+      </li>
+      <li>
+        <Link to='/about'>
+          <i className='fas fa-info-circle' />
+        </Link>
       </li>
     </ul>
   );
@@ -66,7 +87,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className='navbar bg-dark'>
       <h1>
         <Link to='/'>
-          <i className='fas fa-paw'> BC</i>
+          <i className='fas fa-paw'> Bearcon</i>
         </Link>
       </h1>
       {!loading && (
