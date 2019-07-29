@@ -17,7 +17,7 @@ const EditProfile = ({
   getCurrentProfile,
   history,
   deleteAccount,
-  auth: { user }
+  auth: { user, isAuthenticated }
 }) => {
   const [formData, setFormData] = useState({
     company: '',
@@ -78,6 +78,14 @@ const EditProfile = ({
   const onSubmit = e => {
     e.preventDefault();
     createProfile(formData, history, true);
+  };
+  const scrollUp = () => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+    window.scrollTo(0, 0);
   };
 
   // return (
@@ -301,10 +309,17 @@ const EditProfile = ({
               <i className='fas fa-user-slash' /> Delete Account
             </button>
           </div>
-          <input type='submit' className='btn btn-primary my-1' />
-          <Link className='btn btn-light my-1' to='/dashboard'>
-            Go Back
-          </Link>
+          <input
+            onclick='scrollUp()'
+            type='submit'
+            className='btn btn-primary my-1'
+          />
+          {/* <button onclick='scrollTo(0, 0)'>test</button> */}
+          {isAuthenticated && loading === false && (
+            <Link className='btn btn-light my-1' to={`/profile/${user._id}`}>
+              Go Back
+            </Link>
+          )}
         </Fragment>
       ) : (
         <Fragment>

@@ -651,6 +651,15 @@ button {
 
 /* Mobile Styles */
 @media (max-width: 700px) {
+    .edit-grid {
+        display: grid;
+        grid-template-areas:
+            'tp tp'
+            'xp xp'
+            'ed ed';
+        grid-gap: 1rem;
+    }
+
     .container {
         margin-top: 8rem;
     }
