@@ -4,6 +4,7 @@ import Moment from 'react-moment';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { deleteEducation } from '../../actions/profile';
+import { Link } from 'react-router-dom';
 
 const Education = ({ education, deleteEducation }) => {
   const educations = education.map(edu => (
@@ -26,6 +27,19 @@ const Education = ({ education, deleteEducation }) => {
         >
           <i className='fas fa-minus-circle' />
         </button>
+      </td>
+      <td className='td-del'>
+        {/* <button onClick={() => editEducation(edu._id)} className="btn-del"> */}
+        <Link to={`/edit-education/${edu._id}`}>
+          <i className='fas fa-edit' />
+          {/* <i className='fas fa-paw' /> */}
+          {/* <span className='hide-sm'>
+            {''}
+            Profiles
+          </span> */}
+        </Link>
+
+        {/* </button> */}
       </td>
     </tr>
   ));

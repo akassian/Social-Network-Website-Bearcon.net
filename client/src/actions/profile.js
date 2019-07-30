@@ -160,7 +160,11 @@ export const addExperience = (formData, history) => async dispatch => {
 };
 
 // Add Education
-export const addEducation = (formData, history) => async dispatch => {
+export const addEducation = (
+  formData,
+  history,
+  edit = false
+) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -178,8 +182,11 @@ export const addEducation = (formData, history) => async dispatch => {
       type: UPDATE_PROFILE,
       payload: res.data
     });
-
-    dispatch(setAlert('Education Added', 'success'));
+    if (edit) {
+      dispatch(setAlert('Education Edited', 'success'));
+    } else {
+      dispatch(setAlert('Education Added', 'success'));
+    }
 
     history.push('/dashboard');
   } catch (err) {
@@ -220,7 +227,7 @@ export const deleteExperience = id => async dispatch => {
 // Delete education
 export const deleteEducation = id => async dispatch => {
   try {
-    const res = await axios.delete(
+    const res = await axios.deleteEducation(
       `http://localhost:5000/api/profile/education/${id}`
     );
 
