@@ -16,7 +16,7 @@
 }
 
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Maven Pro', sans-serif;
     /* font-variant: small-caps; */
     font-size: 1rem;
     line-height: 1.6;
@@ -339,6 +339,7 @@ img {
 .form input[type='email'],
 .form input[type='password'],
 .form input[type='date'],
+.form input[type='month'],
 .form select,
 .form textarea {
     border-radius: 7.5px;

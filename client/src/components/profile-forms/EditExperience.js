@@ -168,7 +168,7 @@ const EditExperience = ({
         <div className='form-group'>
           <h4>From Date</h4>
           <input
-            type='date'
+            type='month'
             name='from'
             value={from}
             onChange={e => onChange(e)}
@@ -192,7 +192,7 @@ const EditExperience = ({
         <div className='form-group'>
           <h4>To Date</h4>
           <input
-            type='date'
+            type='month'
             name='to'
             value={to}
             onChange={e => onChange(e)}

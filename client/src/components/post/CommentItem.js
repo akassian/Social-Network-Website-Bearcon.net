@@ -23,7 +23,7 @@ const CommentItem = ({
       <p className='my-1'>{text}</p>
       {/* <Fragment> */}
       <p className='post-date inblock'>
-        {/* Posted on <Moment format='MM/DD/YYYY'>{date}</Moment>
+        {/* Posted on <Moment format='MM/YYYY'>{date}</Moment>
          */}
         {/* <Moment fromNow>{moment.utc(date)}</Moment> */}
         <Moment fromNow>{date}</Moment>
