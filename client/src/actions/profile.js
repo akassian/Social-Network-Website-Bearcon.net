@@ -123,7 +123,11 @@ export const createProfile = (
 };
 
 // Add Experience
-export const addExperience = (formData, history) => async dispatch => {
+export const addExperience = (
+  formData,
+  history,
+  edit = false
+) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -141,8 +145,11 @@ export const addExperience = (formData, history) => async dispatch => {
       type: UPDATE_PROFILE,
       payload: res.data
     });
-
-    dispatch(setAlert('Experience Added', 'success'));
+    if (edit) {
+      dispatch(setAlert('Experience Edited', 'success'));
+    } else {
+      dispatch(setAlert('Experience Added', 'success'));
+    }
 
     history.push('/dashboard');
   } catch (err) {

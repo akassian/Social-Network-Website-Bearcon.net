@@ -2,12 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const ProfileExperience = ({
-  experience: { company, title, location, current, to, from, description }
+  experience: { company, title, location, current, to, from, description, _id }
 }) => (
   <div>
-    <h3 className='text-dark'>{company}</h3>
+    <h3 className='text-dark'>
+      {company}
+      <Link title='edit' to={`/edit-experience/${_id}`}>
+        <i className='fas fa-edit rightside' />
+      </Link>
+    </h3>
     <p>
       <Moment format='MM/DD/YYYY'>{moment.utc(from)}</Moment> -{' '}
       {!to ? ' Now' : <Moment format='MM/DD/YYYY'>{moment.utc(to)}</Moment>}
