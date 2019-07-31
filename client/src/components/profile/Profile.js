@@ -39,7 +39,15 @@ const Profile = ({
               </Link>
             )}
           <div className='profile-grid my-1'>
-            <ProfileTop profile={profile} />
+            {/* <ProfileTop profile={profile} /> */}
+            <ProfileTop
+              profile={profile}
+              edit={
+                auth.isAuthenticated &&
+                auth.loading === false &&
+                auth.user._id === profile.user._id
+              }
+            />
             <ProfileAbout profile={profile} />
             <div className='profile-exp bg-white p-2'>
               <h2 className='text-primary'>Experience</h2>
@@ -49,6 +57,11 @@ const Profile = ({
                     <ProfileExperience
                       key={experience._id}
                       experience={experience}
+                      edit={
+                        auth.isAuthenticated &&
+                        auth.loading === false &&
+                        auth.user._id === profile.user._id
+                      }
                     />
                   ))}
                 </Fragment>
@@ -65,6 +78,11 @@ const Profile = ({
                     <ProfileEducation
                       key={education._id}
                       education={education}
+                      edit={
+                        auth.isAuthenticated &&
+                        auth.loading === false &&
+                        auth.user._id === profile.user._id
+                      }
                     />
                   ))}
                 </Fragment>

@@ -1,31 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 const ProfileTop = ({
   profile: {
-    auth,
-    profile,
     status,
     company,
     location,
     website,
     social,
     user: { name, avatar }
-  }
+  },
+  edit
 }) => {
   return (
     <div className='profile-top bg-primary p-2'>
+      {edit && (
+        <Link to={'/edit-profile'}>
+          <i title='Edit' className='fas fa-edit rightside bigger text-white' />
+        </Link>
+      )}
       <img className='round-img my-1' src={avatar} alt='' />
-      {auth.isAuthenticated &&
-        auth.loading === false &&
-        auth.user._id === profile.user._id && (
-          <Link to='/edit-profile' className='btn btn-dark'>
-            <i className='fas fa-edit rightside' />
-          </Link>
-        )}
       <h1 className='large'>{name}</h1>
+
       <p className='lead'>
         {status} {company && <span> at {company}</span>}
       </p>
@@ -67,14 +64,7 @@ const ProfileTop = ({
 };
 
 ProfileTop.propTypes = {
-  profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  profile: state.profile,
-  auth: state.auth
-});
-
-// export default ProfileTop;
-export default connect(mapStateToProps)(ProfileTop);
+export default ProfileTop;

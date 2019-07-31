@@ -73,6 +73,10 @@ img {
     margin-bottom: 1rem;
 }
 
+.bigger {
+    font-size: 1.5rem;
+}
+
 .lead {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -84,6 +88,10 @@ img {
 
 .text-primary {
     color: var(--primary-color);
+}
+
+.text-white {
+    color: #fff;
 }
 
 .text-success {
@@ -216,6 +224,12 @@ img {
     background: var(--light-color);
     /* background: #fff; */
     color: #333;
+}
+
+.btn-lightprimary {
+    background: blue;
+    /* background: #fff; */
+    color: var(--primary-color);
 }
 
 .btn-dark,
@@ -677,6 +691,7 @@ button {
     .large {
         font-size: 2rem;
     }
+
 
     .lead {
         font-size: 1rem;

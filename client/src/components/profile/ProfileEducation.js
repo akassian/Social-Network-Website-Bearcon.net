@@ -14,14 +14,17 @@ const ProfileEducation = ({
     from,
     description,
     _id
-  }
+  },
+  edit
 }) => (
   <div>
     <h3 className='text-dark'>
       {school}{' '}
-      <Link title='edit' to={`/edit-education/${_id}`}>
-        <i className='fas fa-edit rightside' />
-      </Link>
+      {edit && (
+        <Link title='Edit' to={`/edit-education/${_id}`}>
+          <i className='fas fa-edit rightside' />
+        </Link>
+      )}
     </h3>
     <p>
       <Moment format='MM/YYYY'>{moment.utc(from)}</Moment> -{' '}
