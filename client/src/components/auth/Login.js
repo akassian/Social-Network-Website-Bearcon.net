@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
+import Spinner from '../layout/Spinner';
 
 const Login = ({ login, isAuthenticated, auth }) => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const Login = ({ login, isAuthenticated, auth }) => {
     password: ''
   });
   const { email, password } = formData;
+
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = async e => {
@@ -35,10 +37,15 @@ const Login = ({ login, isAuthenticated, auth }) => {
     //   console.error(err.response.data);
     // }
   };
+
+  if (auth.loading) {
+    return <Spinner />;
+  }
   //Redirect if logged in
   if (isAuthenticated) {
     return <Redirect to={`/profile/${auth.user._id}`} />;
   }
+
   return (
     <Fragment>
       <h1 className='large text-primary'>Sign In</h1>
