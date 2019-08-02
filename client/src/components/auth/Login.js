@@ -18,7 +18,7 @@ const Login = ({ login, isAuthenticated, auth }) => {
   const onSubmit = async e => {
     e.preventDefault();
     login(email, password);
-    console.log('SUCCESS');
+    //console.log('SUCCESS');
     // const newUser = {
     //   name,
     //   email,
@@ -37,14 +37,17 @@ const Login = ({ login, isAuthenticated, auth }) => {
     //   console.error(err.response.data);
     // }
   };
-
-  if (auth.loading) {
-    return <Spinner />;
-  }
-  //Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to={`/profile/${auth.user._id}`} />;
+    return <Redirect to='/dashboard' />;
   }
+
+  // if (auth.loading) {
+  //   return <Spinner />;
+  // }
+  //Redirect if logged in
+  // if (isAuthenticated) {
+  //   return <Redirect to={`/profile/${auth.user._id}`} />;
+  // }
 
   return (
     <Fragment>

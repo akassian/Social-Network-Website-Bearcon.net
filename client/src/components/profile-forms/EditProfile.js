@@ -3,11 +3,13 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
+import { deleteAccount } from '../../actions/profile';
 
 const EditProfile = ({
   profile: { profile, loading },
   createProfile,
   getCurrentProfile,
+  deleteAccount,
   history
 }) => {
   const [formData, setFormData] = useState({
@@ -241,6 +243,11 @@ const EditProfile = ({
         <Link className='btn btn-light my-1' to='/dashboard'>
           Go Back
         </Link>
+        <div className='my-2'>
+          <button className='btn btn-danger' onClick={() => deleteAccount()}>
+            <i className='fas fa-user-slash' /> Delete Account
+          </button>
+        </div>
       </form>
     </Fragment>
   );
@@ -249,6 +256,7 @@ const EditProfile = ({
 EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -258,5 +266,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createProfile, getCurrentProfile }
+  { createProfile, getCurrentProfile, deleteAccount }
 )(withRouter(EditProfile));

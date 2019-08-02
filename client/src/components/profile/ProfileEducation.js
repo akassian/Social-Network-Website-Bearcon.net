@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { deleteEducation } from '../../actions/profile';
+import { connect } from 'react-redux';
 
 const ProfileEducation = ({
   education: {
@@ -15,15 +17,25 @@ const ProfileEducation = ({
     description,
     _id
   },
+  deleteEducation,
   edit
 }) => (
   <div>
     <h3 className='text-dark'>
       {school}{' '}
       {edit && (
-        <Link title='Edit' to={`/edit-education/${_id}`}>
-          <i className='fas fa-edit rightside' />
-        </Link>
+        <Fragment>
+          <Link title='Edit' to={`/edit-education/${_id}`}>
+            <i className='fas fa-edit rightside' />
+          </Link>
+          <button
+            title='Delete row'
+            onClick={() => deleteEducation(_id)}
+            className='btn-del'
+          >
+            <i className='fas fa-minus-circle rightside' />
+          </button>
+        </Fragment>
       )}
     </h3>
     <p>
@@ -43,7 +55,12 @@ const ProfileEducation = ({
 );
 
 ProfileEducation.propTypes = {
-  education: PropTypes.object.isRequired
+  education: PropTypes.object.isRequired,
+  deleteEducation: PropTypes.func.isRequired
 };
 
-export default ProfileEducation;
+export default connect(
+  null,
+  { deleteEducation }
+)(ProfileEducation);
+// export default ProfileEducation;
