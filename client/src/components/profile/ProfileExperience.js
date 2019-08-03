@@ -1,20 +1,38 @@
-import React from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { deleteExperience } from '../../actions/profile';
+import { connect } from 'react-redux';
 
 const ProfileExperience = ({
   experience: { company, title, location, current, to, from, description, _id },
+  deleteExperience,
+  history,
   edit
 }) => (
   <div>
     <h3 className='text-dark'>
       {company}
       {edit && (
-        <Link title='Edit' to={`/edit-experience/${_id}`}>
-          <i className='fas fa-edit rightside' />
-        </Link>
+        <Fragment>
+          <button
+            title='Delete row'
+            onClick={() => deleteExperience(history, _id)}
+            className='btn-del rightside'
+          >
+            {console.log(_id)}
+            <i className='fas fa-minus-circle' />
+          </button>
+          <Link
+            title='Edit'
+            to={`/edit-experience/${_id}`}
+            className='rightside'
+          >
+            <i className='fas fa-edit' />
+          </Link>
+        </Fragment>
       )}
     </h3>
     <p>
@@ -34,7 +52,13 @@ const ProfileExperience = ({
 );
 
 ProfileExperience.propTypes = {
-  experience: PropTypes.object.isRequired
+  experience: PropTypes.object.isRequired,
+  deleteExperience: PropTypes.func.isRequired
 };
 
-export default ProfileExperience;
+export default connect(
+  null,
+  { deleteExperience }
+)(withRouter(ProfileExperience));
+
+// export default ProfileExperience;

@@ -211,7 +211,7 @@ export const addEducation = (
 };
 
 // Delete experience
-export const deleteExperience = id => async dispatch => {
+export const deleteExperience = (history, id) => async dispatch => {
   try {
     const res = await axios.delete(
       `http://localhost:5000/api/profile/experience/${id}`
@@ -221,7 +221,7 @@ export const deleteExperience = id => async dispatch => {
       type: UPDATE_PROFILE,
       payload: res.data
     });
-
+    history.push('/login');
     dispatch(setAlert('Experience Removed', 'success'));
   } catch (err) {
     dispatch({
@@ -232,9 +232,9 @@ export const deleteExperience = id => async dispatch => {
 };
 
 // Delete education
-export const deleteEducation = id => async dispatch => {
+export const deleteEducation = (history, id) => async dispatch => {
   try {
-    const res = await axios.deleteEducation(
+    const res = await axios.delete(
       `http://localhost:5000/api/profile/education/${id}`
     );
 
@@ -242,7 +242,8 @@ export const deleteEducation = id => async dispatch => {
       type: UPDATE_PROFILE,
       payload: res.data
     });
-
+    console.log(res.data);
+    history.push('/login');
     dispatch(setAlert('Education Removed', 'success'));
   } catch (err) {
     dispatch({

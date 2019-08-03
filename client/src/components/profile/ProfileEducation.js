@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { deleteEducation } from '../../actions/profile';
 import { connect } from 'react-redux';
 
@@ -17,6 +17,7 @@ const ProfileEducation = ({
     description,
     _id
   },
+  history,
   deleteEducation,
   edit
 }) => (
@@ -25,16 +26,22 @@ const ProfileEducation = ({
       {school}{' '}
       {edit && (
         <Fragment>
-          <Link title='Edit' to={`/edit-education/${_id}`}>
-            <i className='fas fa-edit rightside' />
-          </Link>
           <button
             title='Delete row'
-            onClick={() => deleteEducation(_id)}
-            className='btn-del'
+            onClick={() => deleteEducation(history, _id)}
+            className='btn-del rightside'
           >
-            <i className='fas fa-minus-circle rightside' />
+            {console.log(history)}
+            {console.log(_id)}
+            <i className='fas fa-minus-circle' />
           </button>
+          <Link
+            title='Edit'
+            to={`/edit-education/${_id}`}
+            className='rightside'
+          >
+            <i className='fas fa-edit' />
+          </Link>
         </Fragment>
       )}
     </h3>
@@ -62,5 +69,5 @@ ProfileEducation.propTypes = {
 export default connect(
   null,
   { deleteEducation }
-)(ProfileEducation);
+)(withRouter(ProfileEducation));
 // export default ProfileEducation;

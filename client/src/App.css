@@ -266,6 +266,22 @@ img {
     /* float: right; */
 }
 
+.btn-add {
+    border-radius: 7.5px;
+    display: inline-block;
+    /* background: var(--light-color); */
+    /* background: #fff; */
+    color: var(--success-color);
+    padding: 0.4rem 1.3rem;
+    /* padding: 0.5rem; */
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: opacity 0.2s ease-in;
+    outline: none;
+}
+
 .rightside {
     float: right;
     /* padding-top: 1rem; */
@@ -507,6 +523,7 @@ button {
         'about about'
         'exp edu'
         'github github';
+
     grid-gap: 1rem;
 }
 

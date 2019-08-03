@@ -51,8 +51,9 @@ const Profile = ({
             <ProfileAbout profile={profile} />
             <div className='profile-exp bg-white p-2'>
               <h2 className='text-primary'>
-                Experience
-                <Link to='/add-experience' className='btn btn-light'>
+                {' '}
+                <i className='fas fa-user-tie' /> Experience
+                <Link to='/add-education' className='btn btn-gray rightside'>
                   <i className='fas fa-plus-circle' /> Add Experience
                 </Link>
               </h2>
@@ -77,8 +78,8 @@ const Profile = ({
 
             <div className='profile-edu bg-white p-2'>
               <h2 className='text-primary'>
-                Education
-                <Link to='/add-education' className='btn btn-light'>
+                <i className='fas fa-user-graduate' /> Education
+                <Link to='/add-education' className='btn btn-gray rightside'>
                   <i className='fas fa-plus-circle' /> Add Education
                 </Link>
               </h2>
