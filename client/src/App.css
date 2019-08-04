@@ -74,7 +74,7 @@ img {
 }
 
 .bigger {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .lead {
@@ -264,6 +264,14 @@ img {
     background: none;
     color: var(--danger-color);
     /* float: right; */
+}
+
+.btn-del:hover {
+    opacity: 0.8;
+}
+
+.fa-edit:hover {
+    opacity: 0.8;
 }
 
 .btn-add {
@@ -566,7 +574,7 @@ button {
     grid-area: top;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     text-align: center;
 }

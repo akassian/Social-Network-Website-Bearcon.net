@@ -48,14 +48,28 @@ const Profile = ({
                 auth.user._id === profile.user._id
               }
             />
-            <ProfileAbout profile={profile} />
+            <ProfileAbout
+              profile={profile}
+              edit={
+                auth.isAuthenticated &&
+                auth.loading === false &&
+                auth.user._id === profile.user._id
+              }
+            />
             <div className='profile-exp bg-white p-2'>
               <h2 className='text-primary'>
                 {' '}
                 <i className='fas fa-user-tie' /> Experience
-                <Link to='/add-education' className='btn btn-gray rightside'>
-                  <i className='fas fa-plus-circle' /> Add Experience
-                </Link>
+                {auth.isAuthenticated &&
+                  auth.loading === false &&
+                  auth.user._id === profile.user._id && (
+                    <Link
+                      to='/add-experience'
+                      className='btn btn-gray rightside'
+                    >
+                      <i className='fas fa-plus-circle' /> Add Experience
+                    </Link>
+                  )}
               </h2>
               {profile.experience.length > 0 ? (
                 <Fragment>
@@ -79,9 +93,16 @@ const Profile = ({
             <div className='profile-edu bg-white p-2'>
               <h2 className='text-primary'>
                 <i className='fas fa-user-graduate' /> Education
-                <Link to='/add-education' className='btn btn-gray rightside'>
-                  <i className='fas fa-plus-circle' /> Add Education
-                </Link>
+                {auth.isAuthenticated &&
+                  auth.loading === false &&
+                  auth.user._id === profile.user._id && (
+                    <Link
+                      to='/add-education'
+                      className='btn btn-gray rightside'
+                    >
+                      <i className='fas fa-plus-circle' /> Add Education
+                    </Link>
+                  )}
               </h2>
               {profile.education.length > 0 ? (
                 <Fragment>

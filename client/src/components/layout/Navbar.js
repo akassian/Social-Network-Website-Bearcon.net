@@ -1,10 +1,14 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 
-const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
+const Navbar = ({
+  auth: { isAuthenticated, loading, user },
+  logout,
+  history
+}) => {
   const authLinks = (
     <ul>
       <li>
@@ -26,7 +30,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         </Link>
       </li>
       <li>
-        {isAuthenticated && loading === false && (
+        {user && isAuthenticated && loading === false && (
           <Link to={`/profile/${user._id}`}>
             <i className='fas fa-user' />
             <span className='hide-sm'>
@@ -38,7 +42,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
       </li>
 
       <li>
-        <a onClick={logout} href='#!'>
+        <a onClick={() => logout(history)} href='#!'>
           {''}
           <i className='fas fa-sign-out-alt' />
           <span className='hide-sm'>Logout</span>
@@ -109,4 +113,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { logout }
-)(Navbar);
+)(withRouter(Navbar));

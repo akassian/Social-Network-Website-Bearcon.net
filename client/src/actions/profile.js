@@ -106,9 +106,10 @@ export const createProfile = (
       payload: res.data
     });
     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
-    if (!edit) {
-      history.push('/dashboard');
-    }
+    // if (!edit) {
+    //   history.push('/dashboard');
+    // }
+    history.push('/login');
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -151,7 +152,7 @@ export const addExperience = (
       dispatch(setAlert('Experience Added', 'success'));
     }
 
-    history.push('/dashboard');
+    history.push('/login');
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -195,7 +196,7 @@ export const addEducation = (
       dispatch(setAlert('Education Added', 'success'));
     }
 
-    history.push('/dashboard');
+    history.push('/login');
   } catch (err) {
     const errors = err.response.data.errors;
 

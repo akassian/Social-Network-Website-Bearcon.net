@@ -1,16 +1,23 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const ProfileAbout = ({
   profile: {
     bio,
     skills,
     user: { name }
-  }
+  },
+  edit
 }) => (
   <div className='profile-about bg-light p-2'>
     {bio && (
       <Fragment>
+        {edit && (
+          <Link to={'/edit-profile'}>
+            <i title='Edit' className='fas fa-edit bigger rightside' />
+          </Link>
+        )}
         <h2 className='text-primary'>About Me</h2>
         <p>{bio}</p>
         <div className='line' />
