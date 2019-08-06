@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 
 import { deleteAccount } from '../../actions/profile';
-import { addEducation } from '../../actions/profile';
+import { editEducation } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import DashboardActions from '../dashboard/DashboardActions';
 
@@ -16,7 +16,7 @@ const EditEducation = ({
   profile: { profile, loading },
   // createProfile,
   getCurrentProfile,
-  addEducation,
+  editEducation,
   history,
   // deleteAccount,
   auth: { user },
@@ -52,16 +52,16 @@ const EditEducation = ({
   //   });
 
   //   const [displaySocialInputs, toggleSocialInputs] = useState(false);
-  console.log('match: ', match);
+  // console.log('match: ', match);
   const eduId = match.params.eduId;
-  console.log('eduId: ', eduId);
+  // console.log('eduId: ', eduId);
   // if (loading && profile === null) {
   //   return <Spinner />;
   // }
 
   useEffect(() => {
     getCurrentProfile(); // get profile of the current user from server (which takes from database) and put it in store
-    console.log('profile: ', profile);
+    // console.log('profile: ', profile);
     const eduArray = profile.education;
     const eduToEdit = eduArray.find(edu => edu._id === eduId);
     setFormData({
@@ -125,7 +125,7 @@ const EditEducation = ({
 
   const onSubmit = e => {
     e.preventDefault();
-    addEducation(formData, history, true); // true means edit = true
+    editEducation(formData, history, eduId); // true means edit = true
   };
 
   // return (
@@ -139,13 +139,7 @@ const EditEducation = ({
         you have attended
       </p>
       <small>* = required field</small>
-      <form
-        className='form'
-        onSubmit={e => {
-          e.preventDefault();
-          addEducation(formData, history);
-        }}
-      >
+      <form className='form' onSubmit={onSubmit}>
         <div className='form-group'>
           <input
             type='text'
@@ -230,7 +224,7 @@ const EditEducation = ({
 };
 
 EditEducation.propTypes = {
-  addEducation: PropTypes.func.isRequired,
+  editEducation: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
@@ -241,7 +235,7 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getCurrentProfile, addEducation }
+  { getCurrentProfile, editEducation }
 )(withRouter(EditEducation));
 
 //=====================

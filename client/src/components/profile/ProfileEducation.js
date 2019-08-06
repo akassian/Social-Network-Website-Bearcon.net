@@ -31,8 +31,8 @@ const ProfileEducation = ({
             onClick={() => deleteEducation(history, _id)}
             className='btn-del rightside'
           >
-            {console.log(history)}
-            {console.log(_id)}
+            {/* {console.log(history)}
+            {console.log(_id)} */}
             <i className='fas fa-minus-circle' />
           </button>
           <Link

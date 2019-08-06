@@ -211,6 +211,43 @@ export const addEducation = (
   }
 };
 
+// Edit Education
+export const editEducation = (formData, history, id) => async dispatch => {
+  try {
+    console.log('insie action', id);
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    console.log('Go to ', `http://localhost:5000/api/profile/education/${id}`);
+    const res = await axios.post(
+      `http://localhost:5000/api/profile/education/${id}`,
+      formData,
+      config
+    );
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data
+    });
+    dispatch(setAlert('Education Edited', 'success'));
+
+    history.push('/login');
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
 // Delete experience
 export const deleteExperience = (history, id) => async dispatch => {
   try {

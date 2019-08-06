@@ -164,7 +164,7 @@ router.delete('/', auth, async (req, res) => {
 });
 
 //@route Put api/profile/experience
-//@desc Add profile/user/posts
+//@desc  profile/user/posts
 //@access private
 router.post(
   '/experience',
@@ -311,6 +311,73 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+//@route edit api/profile/education/:edu_id
+//@desc edit education from profile
+//@access private
+router.post(
+  '/education/:edu_id',
+  [
+    auth,
+    [
+      check('school', 'School is required')
+        .not()
+        .isEmpty(),
+      check('degree', 'Degree is required')
+        .not()
+        .isEmpty(),
+      check('fieldofstudy', 'Field of study is required')
+        .not()
+        .isEmpty(),
+      check('from', 'From date is required')
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    //console.log('In API ', req.params.edu_id);
+    const errors = validationResult(req);
+    if (!errors.isEmpty) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const {
+      school,
+      degree,
+      fieldofstudy,
+      from,
+      to,
+      current,
+      description
+    } = req.body;
+    const newEdu = {
+      school,
+      degree,
+      fieldofstudy,
+      from,
+      to,
+      current,
+      description
+    };
+    // console.log('inside');
+    try {
+      //console.log('In API Try ', req.params.edu_id);
+      const profile = await Profile.findOne({ user: req.user.id });
+      //Get replace index
+      const replaceIndex = profile.education
+        .map(item => item.id)
+        .indexOf(req.params.edu_id);
+      profile.education.splice(replaceIndex, 1, newEdu);
+      // profile.education.unshift(newEdu);
+
+      await profile.save();
+      //console.log(profile);
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
 
 // @route    GET api/profile/github/:username
 // @desc     Get user repos from Github
