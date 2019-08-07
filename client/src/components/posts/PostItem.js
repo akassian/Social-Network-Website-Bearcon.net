@@ -29,7 +29,7 @@ const PostItem = ({
         {/* <Moment fromNow>{moment.utc(date)}</Moment> */}
         <Moment fromNow>{date}</Moment>
         {/* <p>Posted {moment(date).calendar()}</p>
-        <div>Posted {moment(date).format('MM/YYYY')}</div>
+        <div>Posted {moment(date).format('MM/DD/YYYY')}</div>
         Posted on <Moment format='lll'>{date}</Moment> */}
       </p>
 

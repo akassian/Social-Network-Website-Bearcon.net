@@ -36,8 +36,8 @@ const ProfileExperience = ({
       )}
     </h3>
     <p>
-      <Moment format='MM/YYYY'>{moment.utc(from)}</Moment> -{' '}
-      {!to ? ' Now' : <Moment format='MM/YYYY'>{moment.utc(to)}</Moment>}
+      <Moment format='MM/DD/YYYY'>{moment.utc(from)}</Moment> -{' '}
+      {!to ? ' Now' : <Moment format='MM/DD/YYYY'>{moment.utc(to)}</Moment>}
     </p>
     <p>
       <strong>Position: </strong> {title}

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 
 import { deleteAccount } from '../../actions/profile';
-import { addExperience } from '../../actions/profile';
+import { editExperience } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import DashboardActions from '../dashboard/DashboardActions';
 
@@ -15,7 +15,7 @@ const EditExperience = ({
   profile: { profile, loading },
   // createProfile,
   getCurrentProfile,
-  addExperience,
+  editExperience,
   history,
   // deleteAccount,
   auth: { user },
@@ -115,7 +115,7 @@ const EditExperience = ({
 
   const onSubmit = e => {
     e.preventDefault();
-    addExperience(formData, history, true); // true means edit = true
+    editExperience(formData, history, expId); // true means edit = true
   };
 
   // return (
@@ -129,13 +129,7 @@ const EditExperience = ({
         positions that you have had in the past
       </p>
       <small>* = required field</small>
-      <form
-        className='form'
-        onSubmit={e => {
-          e.preventDefault();
-          addExperience(formData, history);
-        }}
-      >
+      <form className='form' onSubmit={onSubmit}>
         <div className='form-group'>
           <input
             type='text'
@@ -168,7 +162,7 @@ const EditExperience = ({
         <div className='form-group'>
           <h4>From Date</h4>
           <input
-            type='month'
+            type='date'
             name='from'
             value={from}
             onChange={e => onChange(e)}
@@ -192,7 +186,7 @@ const EditExperience = ({
         <div className='form-group'>
           <h4>To Date</h4>
           <input
-            type='month'
+            type='date'
             name='to'
             value={to}
             onChange={e => onChange(e)}
@@ -219,7 +213,7 @@ const EditExperience = ({
 };
 
 EditExperience.propTypes = {
-  addExperience: PropTypes.func.isRequired,
+  editExperience: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
@@ -230,7 +224,7 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getCurrentProfile, addExperience }
+  { getCurrentProfile, editExperience }
 )(withRouter(EditExperience));
 
 //=====================

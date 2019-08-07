@@ -377,7 +377,7 @@ img {
 .form input[type='email'],
 .form input[type='password'],
 .form input[type='date'],
-.form input[type='month'],
+.form input[type='date'],
 .form select,
 .form textarea {
     border-radius: 7.5px;

@@ -1,10 +1,14 @@
 import React, { Fragment, useState, useEffect } from 'react';
+
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
+
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 
 import { deleteAccount } from '../../actions/profile';
+
 import { editEducation } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import DashboardActions from '../dashboard/DashboardActions';
@@ -14,12 +18,14 @@ import Education from '../dashboard/Education';
 
 const EditEducation = ({
   profile: { profile, loading },
+
   // createProfile,
   getCurrentProfile,
   editEducation,
   history,
   // deleteAccount,
   auth: { user },
+
   match
 }) => {
   const [formData, setFormData] = useState({
@@ -64,6 +70,7 @@ const EditEducation = ({
     // console.log('profile: ', profile);
     const eduArray = profile.education;
     const eduToEdit = eduArray.find(edu => edu._id === eduId);
+
     setFormData({
       // set local state to the values from profile from store
       school: loading || !eduToEdit.school ? '' : eduToEdit.school,
@@ -73,6 +80,7 @@ const EditEducation = ({
       from: loading || !eduToEdit.from ? '' : eduToEdit.from,
       to: loading || !eduToEdit.to ? '' : eduToEdit.to,
       current: loading || !eduToEdit.current ? '' : eduToEdit.current,
+      toDateDisabled: loading || !eduToEdit.current ? '' : eduToEdit.current,
       description:
         loading || !eduToEdit.description ? '' : eduToEdit.description
     });
@@ -121,7 +129,10 @@ const EditEducation = ({
   // } = formData;
 
   const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
 
   const onSubmit = e => {
     e.preventDefault();
@@ -133,14 +144,18 @@ const EditEducation = ({
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className='large text-primary'>Edit Your Education</h1>
+      {' '}
+      <h1 className='large text-primary'>Edit Your Education</h1>{' '}
       <p className='lead'>
+        {' '}
         <i className='fas fa-code-branch' /> Enter any school or program that
-        you have attended
-      </p>
-      <small>* = required field</small>
+        you have attended{' '}
+      </p>{' '}
+      <small>*=required field</small>{' '}
       <form className='form' onSubmit={onSubmit}>
+        {' '}
         <div className='form-group'>
+          {' '}
           <input
             type='text'
             placeholder='* School or Bootcamp'
@@ -148,9 +163,10 @@ const EditEducation = ({
             value={school}
             onChange={e => onChange(e)}
             required
-          />
-        </div>
+          />{' '}
+        </div>{' '}
         <div className='form-group'>
+          {' '}
           <input
             type='text'
             placeholder='* Degree or Certificate'
@@ -158,9 +174,10 @@ const EditEducation = ({
             value={degree}
             onChange={e => onChange(e)}
             required
-          />
-        </div>
+          />{' '}
+        </div>{' '}
         <div className='form-group'>
+          {' '}
           <input
             type='text'
             placeholder='* Field of Study'
@@ -168,43 +185,52 @@ const EditEducation = ({
             value={fieldofstudy}
             onChange={e => onChange(e)}
             required
-          />
-        </div>
+          />{' '}
+        </div>{' '}
         <div className='form-group'>
+          {' '}
           <h4>From Date</h4>
+          {console.log(from)};
           <input
-            type='month'
+            type='date'
             name='from'
             value={from}
             onChange={e => onChange(e)}
-          />
-        </div>
+          />{' '}
+        </div>{' '}
         <div className='form-group'>
+          {' '}
           <p>
+            {' '}
             <input
               type='checkbox'
               name='current'
               checked={current}
               value={current}
               onChange={() => {
-                setFormData({ ...formData, current: !current });
+                setFormData({
+                  ...formData,
+                  current: !current
+                });
                 toggleDisabled(!toDateDisabled);
               }}
             />{' '}
-            Current School
-          </p>
-        </div>
+            Current School{' '}
+          </p>{' '}
+        </div>{' '}
         <div className='form-group'>
-          <h4>To Date</h4>
+          {' '}
+          <h4>To Date</h4>{' '}
           <input
-            type='month'
+            type='date'
             name='to'
             value={to}
             onChange={e => onChange(e)}
             disabled={toDateDisabled ? 'disabled' : ''}
-          />
-        </div>
+          />{' '}
+        </div>{' '}
         <div className='form-group'>
+          {' '}
           <textarea
             name='description'
             cols='30'
@@ -212,13 +238,14 @@ const EditEducation = ({
             placeholder='Program Description'
             value={description}
             onChange={e => onChange(e)}
-          />
-        </div>
-        <input type='submit' className='btn btn-primary my-1' />
+          />{' '}
+        </div>{' '}
+        <input type='submit' className='btn btn-primary my-1' />{' '}
         <Link className='btn btn-light my-1' to='/login'>
-          Go Back
-        </Link>
-      </form>
+          {' '}
+          Go Back{' '}
+        </Link>{' '}
+      </form>{' '}
     </Fragment>
   );
 };
@@ -229,13 +256,18 @@ EditEducation.propTypes = {
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
+
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile
 });
+
 export default connect(
   mapStateToProps,
-  { getCurrentProfile, editEducation }
+  {
+    getCurrentProfile,
+    editEducation
+  }
 )(withRouter(EditEducation));
 
 //=====================
