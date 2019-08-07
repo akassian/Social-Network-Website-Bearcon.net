@@ -80,7 +80,6 @@ const EditEducation = ({
       from: loading || !eduToEdit.from ? '' : eduToEdit.from,
       to: loading || !eduToEdit.to ? '' : eduToEdit.to,
       current: loading || !eduToEdit.current ? '' : eduToEdit.current,
-      toDateDisabled: loading || !eduToEdit.current ? '' : eduToEdit.current,
       description:
         loading || !eduToEdit.description ? '' : eduToEdit.description
     });
@@ -190,7 +189,7 @@ const EditEducation = ({
         <div className='form-group'>
           {' '}
           <h4>From Date</h4>
-          {console.log(from)};
+          {/* {console.log(type(from))}; */}
           <input
             type='date'
             name='from'
@@ -226,7 +225,7 @@ const EditEducation = ({
             name='to'
             value={to}
             onChange={e => onChange(e)}
-            disabled={toDateDisabled ? 'disabled' : ''}
+            disabled={current ? 'disabled' : ''}
           />{' '}
         </div>{' '}
         <div className='form-group'>

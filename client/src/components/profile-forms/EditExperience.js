@@ -71,6 +71,7 @@ const EditExperience = ({
       from: loading || !expToEdit.from ? '' : expToEdit.from,
       to: loading || !expToEdit.to ? '' : expToEdit.to,
       current: loading || !expToEdit.current ? '' : expToEdit.current,
+      toDateDisabled: loading || !expToEdit.current ? '' : expToEdit.current,
       description:
         loading || !expToEdit.description ? '' : expToEdit.description
     });
