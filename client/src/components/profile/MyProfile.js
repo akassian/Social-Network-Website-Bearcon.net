@@ -10,14 +10,9 @@ import ProfileEducation from './ProfileEducation';
 import ProfileGithub from './ProfileGithub';
 import { getProfileById } from '../../actions/profile';
 
-const Profile = ({
-  getProfileById,
-  profile: { profile, loading },
-  auth,
-  match
-}) => {
+const MyProfile = ({ getProfileById, profile: { profile, loading }, auth }) => {
   useEffect(() => {
-    getProfileById(match.params.id);
+    getProfileById(auth.user._id);
   }, [getProfileById]);
 
   //, match.params.id
@@ -28,49 +23,27 @@ const Profile = ({
         <Spinner />
       ) : (
         <Fragment>
-          {console.log('profile: ', profile)}
           <Link to='/profiles' className='btn btn-light'>
             Back To Profiles
           </Link>
-          {auth.isAuthenticated &&
-            auth.loading === false &&
-            auth.user._id === profile.user._id && (
-              <Link to='/edit-profile' className='btn btn-dark'>
-                Edit Profile
-              </Link>
-            )}
+          {auth.isAuthenticated && auth.loading === false && (
+            <Link to='/edit-profile' className='btn btn-dark'>
+              Edit Profile
+            </Link>
+          )}
           <div className='profile-grid my-1'>
             {/* <ProfileTop profile={profile} /> */}
-            <ProfileTop
-              profile={profile}
-              edit={
-                auth.isAuthenticated &&
-                auth.loading === false &&
-                auth.user._id === profile.user._id
-              }
-            />
-            <ProfileAbout
-              profile={profile}
-              edit={
-                auth.isAuthenticated &&
-                auth.loading === false &&
-                auth.user._id === profile.user._id
-              }
-            />
+            <ProfileTop profile={profile} edit={true} />
+            <ProfileAbout profile={profile} edit={true} />
             <div className='profile-exp bg-white p-2'>
               <h2 className='text-primary'>
                 {' '}
                 <i className='fas fa-user-tie' /> Experience
-                {auth.isAuthenticated &&
-                  auth.loading === false &&
-                  auth.user._id === profile.user._id && (
-                    <Link
-                      to='/add-experience'
-                      className='btn btn-gray rightside'
-                    >
-                      <i className='fas fa-plus-circle' /> Add Experience
-                    </Link>
-                  )}
+                {auth.isAuthenticated && auth.loading === false && (
+                  <Link to='/add-experience' className='btn btn-gray rightside'>
+                    <i className='fas fa-plus-circle' /> Add Experience
+                  </Link>
+                )}
               </h2>
               {profile.experience.length > 0 ? (
                 <Fragment>
@@ -78,11 +51,7 @@ const Profile = ({
                     <ProfileExperience
                       key={experience._id}
                       experience={experience}
-                      edit={
-                        auth.isAuthenticated &&
-                        auth.loading === false &&
-                        auth.user._id === profile.user._id
-                      }
+                      edit={true}
                     />
                   ))}
                 </Fragment>
@@ -94,16 +63,11 @@ const Profile = ({
             <div className='profile-edu bg-white p-2'>
               <h2 className='text-primary'>
                 <i className='fas fa-user-graduate' /> Education
-                {auth.isAuthenticated &&
-                  auth.loading === false &&
-                  auth.user._id === profile.user._id && (
-                    <Link
-                      to='/add-education'
-                      className='btn btn-gray rightside'
-                    >
-                      <i className='fas fa-plus-circle' /> Add Education
-                    </Link>
-                  )}
+                {auth.isAuthenticated && auth.loading === false && (
+                  <Link to='/add-education' className='btn btn-gray rightside'>
+                    <i className='fas fa-plus-circle' /> Add Education
+                  </Link>
+                )}
               </h2>
               {profile.education.length > 0 ? (
                 <Fragment>
@@ -111,11 +75,7 @@ const Profile = ({
                     <ProfileEducation
                       key={education._id}
                       education={education}
-                      edit={
-                        auth.isAuthenticated &&
-                        auth.loading === false &&
-                        auth.user._id === profile.user._id
-                      }
+                      edit={true}
                     />
                   ))}
                 </Fragment>
@@ -134,7 +94,7 @@ const Profile = ({
   );
 };
 
-Profile.propTypes = {
+MyProfile.propTypes = {
   getProfileById: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
@@ -148,4 +108,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getProfileById }
-)(Profile);
+)(MyProfile);

@@ -12,6 +12,7 @@ import EditEducation from '../profile-forms/EditEducation';
 import EditExperience from '../profile-forms/EditExperience';
 import Profiles from '../profiles/Profiles';
 import Profile from '../profile/Profile';
+import MyProfile from '../profile/MyProfile';
 import Posts from '../posts/Posts';
 import Post from '../post/Post';
 import NotFound from '../layout/NotFound';
@@ -28,6 +29,7 @@ const Routes = () => {
         <Route exact path='/profiles' component={Profiles} />
         <Route exact path='/about' component={About} />
         <Route exact path='/profile/:id' component={Profile} />
+        <Route exact path='/me' component={MyProfile} />
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <PrivateRoute exact path='/create-profile' component={CreateProfile} />
         <PrivateRoute exact path='/edit-profile' component={EditProfile} />
