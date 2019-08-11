@@ -51,27 +51,29 @@ const CreateProfile = ({ createProfile, history }) => {
   return (
     <Fragment>
       <h1 className='large text-primary'>Create Your Profile</h1>
-      <p className='lead'>
-        <i className='fas fa-user' /> Let's get some information to make your
+      {/* <p className="lead">
+        <i className="fas fa-user" /> Let's get some information to make your
         profile stand out
-      </p>
+      </p> */}
       <small>* = required fields</small>
+
       <form className='form' onSubmit={e => onSubmit(e)}>
         <div className='form-group'>
           <select name='status' value={status} onChange={e => onChange(e)}>
             <option value='0'>* Select Professional Status</option>
+            <option value='Student'>Student</option>
+            <option value='Intern'>Intern</option>
+            <option value='Engineer'>Engineer</option>
+            <option value='Analyst'>Analyst</option>
             <option value='Developer'>Developer</option>
             <option value='Junior Developer'>Junior Developer</option>
             <option value='Senior Developer'>Senior Developer</option>
             <option value='Manager'>Manager</option>
-            <option value='Student or Learning'>Student or Learning</option>
-            <option value='Instructor'>Instructor or Teacher</option>
-            <option value='Intern'>Intern</option>
+            <option value='Instructor'>Instructor</option>
+
             <option value='Other'>Other</option>
           </select>
-          <small className='form-text'>
-            Give us an idea of where you are at in your career
-          </small>
+          <small className='form-text'>Position / Title</small>
         </div>
         <div className='form-group'>
           <input
@@ -82,7 +84,7 @@ const CreateProfile = ({ createProfile, history }) => {
             onChange={e => onChange(e)}
           />
           <small className='form-text'>
-            Could be your own company or one you work for
+            Company you work for or your own company
           </small>
         </div>
         <div className='form-group'>
@@ -94,7 +96,7 @@ const CreateProfile = ({ createProfile, history }) => {
             onChange={e => onChange(e)}
           />
           <small className='form-text'>
-            Could be your own or a company website
+            Your website or your company website
           </small>
         </div>
         <div className='form-group'>
@@ -105,9 +107,7 @@ const CreateProfile = ({ createProfile, history }) => {
             value={location}
             onChange={e => onChange(e)}
           />
-          <small className='form-text'>
-            City & state suggested (eg. Boston, MA)
-          </small>
+          <small className='form-text'>City, State</small>
         </div>
         <div className='form-group'>
           <input
@@ -117,9 +117,7 @@ const CreateProfile = ({ createProfile, history }) => {
             value={skills}
             onChange={e => onChange(e)}
           />
-          <small className='form-text'>
-            Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
-          </small>
+          <small className='form-text'>(eg. HTML,CSS,JavaScript)</small>
         </div>
         <div className='form-group'>
           <input
@@ -130,18 +128,18 @@ const CreateProfile = ({ createProfile, history }) => {
             onChange={e => onChange(e)}
           />
           <small className='form-text'>
-            If you want your latest repos and a Github link, include your
-            username
+            If you want to include links to your latest Github repos, include
+            your Github username
           </small>
         </div>
         <div className='form-group'>
           <textarea
-            placeholder='A short bio of yourself'
+            placeholder='About me'
             name='bio'
             value={bio}
             onChange={e => onChange(e)}
           />
-          <small className='form-text'>Tell us a little about yourself</small>
+          <small className='form-text'>Write something about yourself</small>
         </div>
 
         <div className='my-2'>

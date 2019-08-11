@@ -31,11 +31,13 @@ const Navbar = ({
       </li>
       <li>
         {user && isAuthenticated && loading === false && (
-          <Link to={`/profile/${user._id}`}>
+          /* <Link to={`/profile/${user._id}`}> */
+
+          <Link to='/dashboard'>
             <i className='fas fa-user' />
             <span className='hide-sm'>
               {''}
-              Profile
+              My Profile
             </span>
           </Link>
         )}

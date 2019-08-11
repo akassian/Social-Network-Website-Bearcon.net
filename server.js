@@ -30,6 +30,16 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+const cb = function(err, numAffected) {
+  if (err) {
+    console.error(err.message);
+  }
+  //console.log('num=', numAffected);
+};
+
+User.update({}, { $set: { picture: '' } }, { multi: true }, cb);
+User.update({}, { $set: { background: '' } }, { multi: true }, cb);
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

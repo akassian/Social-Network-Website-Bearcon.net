@@ -45,6 +45,10 @@ const PostSchema = new Schema({
       }
     }
   ],
+  private: {
+    type: Boolean,
+    default: false
+  },
   date: {
     type: Date,
     default: Date.now

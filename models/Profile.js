@@ -86,6 +86,13 @@ const ProfileSchema = new mongoose.Schema({
       }
     }
   ],
+  courses: [
+    {
+      title: {
+        type: String
+      }
+    }
+  ],
   social: {
     youtube: {
       type: String

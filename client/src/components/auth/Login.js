@@ -38,7 +38,8 @@ const Login = ({ login, isAuthenticated, auth }) => {
     // }
   };
   if (auth.user && isAuthenticated && !auth.loading) {
-    return <Redirect to={`profile/${auth.user._id}`} />;
+    // return <Redirect to={`profile/${auth.user._id}`} />;
+    return <Redirect to='/dashboard' />;
   }
 
   // if (auth.loading) {

@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import Spinner from './Spinner';
 const Landing = ({ auth: { isAuthenticated, loading, user } }) =>
   isAuthenticated ? (
-    <Redirect to={`/profile/${user._id}`} />
+    /* <Redirect to={`/profile/${user._id}`} /> */
+    <Redirect to='/dashboard' />
   ) : loading ? (
     <Spinner />
   ) : (

@@ -124,11 +124,7 @@ export const createProfile = (
 };
 
 // Add Experience
-export const addExperience = (
-  formData,
-  history,
-  edit = false
-) => async dispatch => {
+export const addExperience = (formData, history) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -146,11 +142,8 @@ export const addExperience = (
       type: UPDATE_PROFILE,
       payload: res.data
     });
-    if (edit) {
-      dispatch(setAlert('Experience Edited', 'success'));
-    } else {
-      dispatch(setAlert('Experience Added', 'success'));
-    }
+
+    dispatch(setAlert('Experience Added', 'success'));
 
     history.push('/login');
   } catch (err) {
@@ -168,11 +161,7 @@ export const addExperience = (
 };
 
 // Add Education
-export const addEducation = (
-  formData,
-  history,
-  edit = false
-) => async dispatch => {
+export const addEducation = (formData, history) => async dispatch => {
   try {
     const config = {
       headers: {
@@ -190,11 +179,8 @@ export const addEducation = (
       type: UPDATE_PROFILE,
       payload: res.data
     });
-    if (edit) {
-      dispatch(setAlert('Education Edited', 'success'));
-    } else {
-      dispatch(setAlert('Education Added', 'success'));
-    }
+
+    dispatch(setAlert('Education Added', 'success'));
 
     history.push('/login');
   } catch (err) {
@@ -346,3 +332,4 @@ export const deleteAccount = () => async dispatch => {
     }
   }
 };
+// export addCourse = () => {};

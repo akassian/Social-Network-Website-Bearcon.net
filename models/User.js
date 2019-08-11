@@ -18,6 +18,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  picture: {
+    type: String,
+    default: ''
+  },
+  background: {
+    type: String,
+    default: ''
+  },
   date: {
     type: Date,
     default: Date.now
