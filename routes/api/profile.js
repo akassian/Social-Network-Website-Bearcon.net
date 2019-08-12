@@ -470,6 +470,40 @@ router.get('/github/:username', (req, res) => {
   }
 });
 
+//@route Put api/profile/course
+//@desc Add profile course
+//@access private
+router.post(
+  '/course',
+  [
+    auth,
+    [
+      check('title', 'Course title is required')
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { title } = req.body;
+    const newCourse = {
+      title
+    };
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+      profile.courses.unshift(newCourse);
+      await profile.save();
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
 // Client ID
 // ac72f96a5f2681873560
 // Client Secret

@@ -13,7 +13,7 @@ const Navbar = ({
     <ul>
       <li>
         <Link to='/profiles'>
-          <i className='fas fa-paw' />
+          <i className='fas fa-users' />
           <span className='hide-sm'>
             {''}
             Profiles
@@ -61,7 +61,7 @@ const Navbar = ({
     <ul>
       <li>
         <Link to='/profiles'>
-          <i className='fas fa-paw' />
+          <i className='fas fa-users' />
           <span className='hide-sm'>
             {''}
             Profiles

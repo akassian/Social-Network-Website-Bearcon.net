@@ -8,12 +8,17 @@ import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
 import ProfileGithub from './ProfileGithub';
-import { getProfileById } from '../../actions/profile';
+import { getProfileById, getCurrentProfile } from '../../actions/profile';
 
-const MyProfile = ({ getProfileById, profile: { profile, loading }, auth }) => {
+const MyProfile = ({
+  getProfileById,
+  getCurrentProfile,
+  profile: { profile, loading },
+  auth
+}) => {
   useEffect(() => {
-    getProfileById(auth.user._id);
-  }, [getProfileById]);
+    getCurrentProfile();
+  }, [getCurrentProfile]);
 
   //, match.params.id
 
@@ -68,6 +73,11 @@ const MyProfile = ({ getProfileById, profile: { profile, loading }, auth }) => {
                     <i className='fas fa-plus-circle' /> Add Education
                   </Link>
                 )}
+                {auth.isAuthenticated && auth.loading === false && (
+                  <Link to='/add-course' className='btn btn-gray rightside'>
+                    <i className='fas fa-plus-circle' /> Add Course
+                  </Link>
+                )}
               </h2>
               {profile.education.length > 0 ? (
                 <Fragment>
@@ -95,7 +105,7 @@ const MyProfile = ({ getProfileById, profile: { profile, loading }, auth }) => {
 };
 
 MyProfile.propTypes = {
-  getProfileById: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -107,5 +117,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProfileById }
+  { getCurrentProfile }
 )(MyProfile);
