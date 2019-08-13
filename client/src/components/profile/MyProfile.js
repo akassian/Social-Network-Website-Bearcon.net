@@ -7,6 +7,7 @@ import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
+import ProfileCourse from './ProfileCourse';
 import ProfileGithub from './ProfileGithub';
 import { getProfileById, getCurrentProfile } from '../../actions/profile';
 
@@ -73,11 +74,11 @@ const MyProfile = ({
                     <i className='fas fa-plus-circle' /> Add Education
                   </Link>
                 )}
-                {auth.isAuthenticated && auth.loading === false && (
+                {/* {auth.isAuthenticated && auth.loading === false && (
                   <Link to='/add-course' className='btn btn-gray rightside'>
                     <i className='fas fa-plus-circle' /> Add Course
                   </Link>
-                )}
+                )} */}
               </h2>
               {profile.education.length > 0 ? (
                 <Fragment>
@@ -91,6 +92,32 @@ const MyProfile = ({
                 </Fragment>
               ) : (
                 <h4>No education credentials</h4>
+              )}
+            </div>
+
+            <div className='profile-course bg-white p-2'>
+              <h2 className='text-primary'>
+                <i className='fas fa-user-graduate' /> Courses
+                {auth.isAuthenticated &&
+                  auth.loading === false &&
+                  auth.user._id === profile.user._id && (
+                    <Link to='/add-course' className='btn btn-gray rightside'>
+                      <i className='fas fa-plus-circle' /> Add Course
+                    </Link>
+                  )}
+              </h2>
+              {profile.courses.length > 0 ? (
+                <Fragment>
+                  {profile.courses.map(course => (
+                    <ProfileCourse
+                      key={course._id}
+                      course={course}
+                      edit={true}
+                    />
+                  ))}
+                </Fragment>
+              ) : (
+                <h4>No courses listed</h4>
               )}
             </div>
 

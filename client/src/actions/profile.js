@@ -367,3 +367,25 @@ export const addCourse = (formData, history) => async dispatch => {
     });
   }
 };
+
+// Delete course
+export const deleteCourse = (history, id) => async dispatch => {
+  try {
+    const res = await axios.delete(
+      `http://localhost:5000/api/profile/course/${id}`
+    );
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data
+    });
+    console.log(res.data);
+    history.push('/me');
+    dispatch(setAlert('Course Removed', 'success'));
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};

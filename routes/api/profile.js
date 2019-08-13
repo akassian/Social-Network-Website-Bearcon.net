@@ -504,6 +504,25 @@ router.post(
   }
 );
 
+//@route DELete api/profile/course/:course_id
+//@desc Delete course from profile
+//@access private
+router.delete('/course/:course_id', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    //Get remove index
+    const removeIndex = profile.courses
+      .map(item => item.id)
+      .indexOf(req.params.course_id);
+    profile.courses.splice(removeIndex, 1);
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // Client ID
 // ac72f96a5f2681873560
 // Client Secret

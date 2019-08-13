@@ -530,6 +530,7 @@ button {
         'top top'
         'about about'
         'exp edu'
+        'crs crs'
         'github github';
 
     grid-gap: 1rem;
@@ -595,6 +596,15 @@ button {
 .profile-about {
     grid-area: about;
     text-align: center;
+}
+
+.profile-course {
+    grid-area: crs;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* text-align: center; */
 }
 
 .profile-about .skills {
