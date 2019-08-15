@@ -528,3 +528,47 @@ router.delete('/course/:course_id', auth, async (req, res) => {
 // Client Secret
 // beacf38f862b382ab1057bc5cfb890ddd55beb4a
 module.exports = router;
+
+//@route edit api/profile/course/:coure_id
+//@desc edit course from profile
+//@access private
+router.post(
+  '/course/:course_id',
+  [
+    auth,
+    [
+      check('title', 'Course title is required')
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    //console.log('In API ', req.params.edu_id);
+    const errors = validationResult(req);
+    if (!errors.isEmpty) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { title } = req.body;
+    const newCourse = {
+      title
+    };
+    // console.log('inside');
+    try {
+      //console.log('In API Try ', req.params.edu_id);
+      const profile = await Profile.findOne({ user: req.user.id });
+      //Get replace index
+      const replaceIndex = profile.courses
+        .map(item => item.id)
+        .indexOf(req.params.edu_id);
+      profile.courses.splice(replaceIndex, 1, newCourse);
+      // profile.courses.unshift(newCourse);
+
+      await profile.save();
+      //console.log(profile);
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);

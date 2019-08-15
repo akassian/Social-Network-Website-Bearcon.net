@@ -600,10 +600,10 @@ button {
 
 .profile-course {
     grid-area: crs;
-    text-align: center;
+    /* text-align: center; */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    /* align-items: center; */
     /* text-align: center; */
 }
 

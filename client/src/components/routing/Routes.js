@@ -11,6 +11,7 @@ import AddEducation from '../profile-forms/AddEducation';
 import AddCourse from '../profile-forms/AddCourse';
 import EditEducation from '../profile-forms/EditEducation';
 import EditExperience from '../profile-forms/EditExperience';
+import EditCourse from '../profile-forms/EditCourse';
 import Profiles from '../profiles/Profiles';
 import Profile from '../profile/Profile';
 import MyProfile from '../profile/MyProfile';
@@ -46,6 +47,11 @@ const Routes = () => {
           exact
           path='/edit-experience/:expId'
           component={EditExperience}
+        />
+        <PrivateRoute
+          exact
+          path='/edit-course/:courseId'
+          component={EditCourse}
         />
         <PrivateRoute exact path='/posts' component={Posts} />
         <PrivateRoute exact path='/posts/:id' component={Post} />
