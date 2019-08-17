@@ -206,14 +206,16 @@ const EditEducation = ({
               name='current'
               checked={current}
               value={current}
-              onChange={() => {
+              onChange={e => {
                 setFormData({
                   ...formData,
-                  current: !current
+                  current: e.target.checked,
+                  to: current ? to : ''
                 });
                 toggleDisabled(!toDateDisabled);
               }}
             />{' '}
+            {console.log('current', current)}
             Current School{' '}
           </p>{' '}
         </div>{' '}
