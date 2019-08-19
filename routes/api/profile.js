@@ -383,7 +383,7 @@ router.post(
 //@desc edit experience from profile
 //@access private
 router.post(
-  '/experience',
+  '/experience/:exp_id',
   [
     auth,
     [
@@ -428,7 +428,7 @@ router.post(
         .map(item => item.id)
         .indexOf(req.params.exp_id);
       // profile.experience.unshift(newExp);
-      profile.experience.splice(replaceIndex, 1, newEdu);
+      profile.experience.splice(replaceIndex, 1, newExp);
 
       await profile.save();
       res.json(profile);

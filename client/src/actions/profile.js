@@ -209,7 +209,7 @@ export const editExperience = (formData, history, id) => async dispatch => {
 
     // console.log('Go to ', `http://localhost:5000/api/profile/education/${id}`);
     const res = await axios.post(
-      `http://localhost:5000/api/profile/exprience/${id}`,
+      `http://localhost:5000/api/profile/experience/${id}`,
       formData,
       config
     );

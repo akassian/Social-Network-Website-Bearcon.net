@@ -31,8 +31,6 @@ const EditExperience = ({
     description: ''
   });
 
-  const [toDateDisabled, toggleDisabled] = useState(false);
-
   // => {
   //   const [formData, setFormData] = useState({
   //     company: "",
@@ -70,8 +68,7 @@ const EditExperience = ({
       location: loading || !expToEdit.location ? '' : expToEdit.location,
       from: loading || !expToEdit.from ? '' : expToEdit.from,
       to: loading || !expToEdit.to ? '' : expToEdit.to,
-      current: loading || !expToEdit.current ? '' : expToEdit.current,
-      toDateDisabled: loading || !expToEdit.current ? '' : expToEdit.current,
+      current: loading || !expToEdit.current ? false : expToEdit.current,
       description:
         loading || !expToEdit.description ? '' : expToEdit.description
     });
@@ -176,9 +173,12 @@ const EditExperience = ({
               name='current'
               checked={current}
               value={current}
-              onChange={() => {
-                setFormData({ ...formData, current: !current });
-                toggleDisabled(!toDateDisabled);
+              onChange={e => {
+                setFormData({
+                  ...formData,
+                  current: e.target.checked ? true : false,
+                  to: current ? '' : to
+                });
               }}
             />{' '}
             Current Job
@@ -191,7 +191,7 @@ const EditExperience = ({
             name='to'
             value={to}
             onChange={e => onChange(e)}
-            disabled={toDateDisabled ? 'disabled' : ''}
+            disabled={current ? 'disabled' : ''}
           />
         </div>
         <div className='form-group'>

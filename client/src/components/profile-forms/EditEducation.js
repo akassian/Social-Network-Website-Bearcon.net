@@ -38,8 +38,6 @@ const EditEducation = ({
     description: ''
   });
 
-  const [toDateDisabled, toggleDisabled] = useState(false);
-
   // => {
   //   const [formData, setFormData] = useState({
   //     company: "",
@@ -79,7 +77,7 @@ const EditEducation = ({
         loading || !eduToEdit.fieldofstudy ? '' : eduToEdit.fieldofstudy,
       from: loading || !eduToEdit.from ? '' : eduToEdit.from,
       to: loading || !eduToEdit.to ? '' : eduToEdit.to,
-      current: loading || !eduToEdit.current ? '' : eduToEdit.current,
+      current: loading || !eduToEdit.current ? false : eduToEdit.current,
       description:
         loading || !eduToEdit.description ? '' : eduToEdit.description
     });
@@ -209,10 +207,9 @@ const EditEducation = ({
               onChange={e => {
                 setFormData({
                   ...formData,
-                  current: e.target.checked,
-                  to: current ? to : ''
+                  current: e.target.checked ? true : false,
+                  to: current ? '' : to
                 });
-                toggleDisabled(!toDateDisabled);
               }}
             />{' '}
             {console.log('current', current)}
