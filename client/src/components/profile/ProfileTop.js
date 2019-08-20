@@ -9,6 +9,7 @@ const ProfileTop = ({
     location,
     website,
     social,
+    images: { picture, cover },
     user: { name, avatar }
   },
   edit
@@ -21,7 +22,11 @@ const ProfileTop = ({
         </Link>
       )}
       <div className=''>
-        <img className='round-img my-1' src={avatar} alt='' />
+        <img
+          className='round-img my-1'
+          src={picture === '' ? avatar : picture}
+          alt=''
+        />
         <h1 className='large'>{name}</h1>
 
         <p className='lead'>

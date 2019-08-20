@@ -426,3 +426,39 @@ export const editCourse = (formData, history, id) => async dispatch => {
     });
   }
 };
+
+export const uploadFile = (formData, history) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const res = await axios.post(
+      'http://localhost:5000/upload',
+      formData,
+      config
+    );
+
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data
+    });
+
+    dispatch(setAlert('Profile Picture Updated', 'success'));
+
+    history.push('/login');
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
