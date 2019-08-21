@@ -572,3 +572,74 @@ router.post(
     }
   }
 );
+
+//@route POST api/profile/avatar
+//@desc upload avatar for profile
+//@access private
+
+router.post('/avatar', auth, async (req, res) => {
+  try {
+    // console.log("server: req.body:  ", req.body);
+    // console.log("req.body.picture: ", req.body.picture);
+    let profile = await Profile.findOne({ user: req.user.id });
+    //console.log("profile:", profile);
+    profile.images.picture = req.body.picture;
+    await profile.save();
+    //console.log("changed profile:", profile);
+    return res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+//@route POST api/profile/avatar
+//@desc upload avatar for profile
+//@access private
+
+router.post('/cover', auth, async (req, res) => {
+  try {
+    // console.log("server: req.body:  ", req.body);
+    // console.log("req.body.picture: ", req.body.picture);
+    let profile = await Profile.findOne({ user: req.user.id });
+    //console.log("profile:", profile);
+    profile.images.cover = req.body.cover;
+    await profile.save();
+    //console.log("changed profile:", profile);
+    return res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+//==========================
+
+// Upload picture to store on our server. We don't use for this version of project, as we store
+// users images on Cloudinary instead.
+
+// @route POST api/profile/uploadPic
+// @desc Test route
+// @access public
+// const uploadToImagesFolder = multer({ dest: "images/" });
+
+// router.post(
+//   "/uploadPic",
+//   uploadToImagesFolder.single("picture"),
+//   (req, res) => {
+//     //this will upload
+//     // to images folder, because  uploadToImagesFolder = multer({ dest: "images/" });
+//     try {
+//       console.log("req.file: ", req.file);
+//       res.send(req.file);
+//     } catch (err) {
+//       res.send(400);
+//     }
+//   }
+// );
+
+// Client ID
+// ac72f96a5f2681873560
+// Client Secret
+// beacf38f862b382ab1057bc5cfb890ddd55beb4a
+module.exports = router;

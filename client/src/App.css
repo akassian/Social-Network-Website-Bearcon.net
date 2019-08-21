@@ -211,6 +211,36 @@ img {
     color: #fff;
 }
 
+.bg-cover {
+    /* background: var(--light-color); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    /* z-index: -100; */
+    color: #FFFFFF;
+}
+
+.bg-cover img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.content {
+    color: #FFFFFF;
+    /* font-size: 26px; */
+    /* font-weight: bold; */
+    /* text-shadow: -1px -1px 1px #000, 1px 1px 1px #000; */
+    /* position: relative; */
+    z-index: 100;
+}
+
 .btn-light,
 .bg-light,
 .badge-light,
@@ -578,6 +608,7 @@ button {
     /* align-items: center; */
     justify-content: center;
     text-align: center;
+    position: relative;
 }
 
 .profile-top img {

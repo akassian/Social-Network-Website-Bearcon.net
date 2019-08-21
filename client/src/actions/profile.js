@@ -434,28 +434,96 @@ export const uploadFile = (formData, history) => async dispatch => {
         'Content-Type': 'application/json'
       }
     };
-
     const res = await axios.post(
-      'http://localhost:5000/upload',
+      'http://localhost:5000/uploading',
+
       formData,
       config
     );
-
+    console.log('status: ', res.status);
     dispatch({
       type: GET_PROFILE,
       payload: res.data
     });
-
     dispatch(setAlert('Profile Picture Updated', 'success'));
 
-    history.push('/login');
+    history.push('/me');
   } catch (err) {
+    console.log(err.response.data.errors[0].msg);
     const errors = err.response.data.errors;
 
     if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }
 
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+export const uploadAvatar = (images, history) => async dispatch => {
+  try {
+    console.log('action');
+    console.log('images', images);
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const res = await axios.post(
+      'http://localhost:5000/api/profile/avatar',
+      images,
+      config
+    );
+    console.log('status: ', res.status);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data
+    });
+    dispatch(setAlert('Avatar Picture Updated', 'success'));
+    // history.push("/me");
+  } catch (err) {
+    console.log(err.response.data.errors[0].msg);
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+export const uploadCover = (images, history) => async dispatch => {
+  try {
+    //console.log("action");
+    //console.log("images with cover in action", images);
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const res = await axios.post(
+      'http://localhost:5000/api/profile/cover',
+      images,
+      config
+    );
+    console.log('status: ', res.status);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data
+    });
+    dispatch(setAlert('Cover Picture Updated', 'success'));
+    // history.push("/me");
+  } catch (err) {
+    console.log(err.response.data.errors[0].msg);
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
