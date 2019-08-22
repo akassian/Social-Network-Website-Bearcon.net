@@ -70,7 +70,7 @@ const UploadImages = ({ uploadAvatar, uploadCover, history }) => {
   return (
     <Fragment>
       {/* //========================================================= */}{' '}
-      <h1 className='large text-primary'>Add or update avatar picture</h1>{' '}
+      <h1 className='large text-primary'>Upload Image</h1>{' '}
       <form
         className='form'
         onSubmit={e => {
@@ -80,12 +80,7 @@ const UploadImages = ({ uploadAvatar, uploadCover, history }) => {
       >
         {' '}
         <div className='form-group'>
-          {' '}
-          <h2>
-            {' '}
-            Please choose your avatar picture. When done uploading, click Update
-            Avatar. Wait a minute to see your new avatar on Profile.{' '}
-          </h2>
+          <p className='lead'> Choose your avatar / cover image. </p>
           <div>
             <button
               className='btn btn-primary my-1'
@@ -101,7 +96,6 @@ const UploadImages = ({ uploadAvatar, uploadCover, history }) => {
       </form>{' '}
       {/* //========================================================= */}
       {/* //========================================================= */}{' '}
-      <h1 className='large text-primary'>Add or update cover picture</h1>{' '}
       <form
         className='form'
         onSubmit={e => {
@@ -113,11 +107,6 @@ const UploadImages = ({ uploadAvatar, uploadCover, history }) => {
         {' '}
         <div className='form-group'>
           {' '}
-          <h2>
-            {' '}
-            Please choose your cover picture. When done uploading, click Update
-            Cover. Wait a minute to see your new cover on Profile.{' '}
-          </h2>
           <div>
             <button
               className='btn btn-primary my-1'

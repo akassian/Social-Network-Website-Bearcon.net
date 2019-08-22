@@ -16,6 +16,7 @@ const ProfileTop = ({
 }) => {
   return (
     <div className='profile-top bg-primary p-2'>
+      <div className='cover-overlay' />
       <div class='bg-cover'>
         {/* <p>Background taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaext</p> */}
         <img src={picture === '' ? '' : cover} alt='' />
@@ -30,11 +31,13 @@ const ProfileTop = ({
           </Link>
         )}
         <div className=''>
-          <img
-            className='round-img my-1'
-            src={picture === '' ? avatar : picture}
-            alt=''
-          />
+          <div class='rounder'>
+            <img
+              className='round-img'
+              src={picture === '' ? avatar : picture}
+              alt=''
+            />
+          </div>
           <h1 className='large'>{name}</h1>
 
           <p className='lead'>
