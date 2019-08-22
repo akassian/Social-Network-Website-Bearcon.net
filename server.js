@@ -31,47 +31,32 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const cb = function(err, numAffected) {
-  if (err) {
-    console.error(err.message);
-  }
-  //console.log('num=', numAffected);
-};
+// UPDATE ALL DOCUMENTS IN DATABASE BY ADDING SOME FIELDS
+// Callback function, numAffected  is number of affected documents and other info
 
-User.update({}, { $set: { picture: '' } }, { multi: true }, cb);
-User.update({}, { $set: { background: '' } }, { multi: true }, cb);
+// const cb = function(err, numAffected) {
+//   if (err) {
+//     console.error(err.message);
+//   }
+//   console.log('num=', numAffected);
+// };
+
+// User.update(
+//   { name: "Keith Wong" }, // conditions
+//   { $set: { background: "" } }, // update
+//   { multi: true },  // options
+//   cb // callback
+// );
+
+//User.update({}, { $set: { picture: "", background: "" } }, { multi: true }, cb);
+
+// Profile.update(
+//   {}, // no conditions
+//   { $set: { images: { picture: "", cover: "" } } },
+//   { multi: true },
+//   cb
+// );
 //==============================================
-const multer = require('multer');
-const cloudinary = require('cloudinary');
-
-cloudinary.config({
-  cloud_name: 'akass1122',
-  api_key: '143449497712777',
-  api_secret: '16JwUkJF4jkbcPW6ADk6KbHXysU'
-});
-
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
-const uploadcallback = async (req, res) => {
-  cloudinary.uploader
-    .upload_stream(async result => {
-      try {
-        let profile = await Profile.findOne({ user: req.user.id });
-        profile.images.picture = result.secure_url.toString();
-        await profile.save(function(err) {
-          if (!err) console.log('success!');
-        });
-        return res.json(profile);
-      } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-      }
-    })
-    .end(req.file.buffer);
-};
-app.post('/upload', [auth, upload.single('photo')], uploadcallback);
-
-//=========================================
 
 const PORT = process.env.PORT || 5000;
 

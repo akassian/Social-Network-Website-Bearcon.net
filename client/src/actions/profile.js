@@ -435,14 +435,14 @@ export const uploadFile = (formData, history) => async dispatch => {
       }
     };
     const res = await axios.post(
-      'http://localhost:5000/uploading',
+      'http://localhost:5000/api/profile/upload',
 
       formData,
       config
     );
     console.log('status: ', res.status);
     dispatch({
-      type: GET_PROFILE,
+      type: UPDATE_PROFILE,
       payload: res.data
     });
     dispatch(setAlert('Profile Picture Updated', 'success'));
@@ -479,11 +479,11 @@ export const uploadAvatar = (images, history) => async dispatch => {
     );
     console.log('status: ', res.status);
     dispatch({
-      type: GET_PROFILE,
+      type: UPDATE_PROFILE,
       payload: res.data
     });
     dispatch(setAlert('Avatar Picture Updated', 'success'));
-    // history.push("/me");
+    history.push('/me');
   } catch (err) {
     console.log(err.response.data.errors[0].msg);
     const errors = err.response.data.errors;
@@ -513,11 +513,11 @@ export const uploadCover = (images, history) => async dispatch => {
     );
     console.log('status: ', res.status);
     dispatch({
-      type: GET_PROFILE,
+      type: UPDATE_PROFILE,
       payload: res.data
     });
     dispatch(setAlert('Cover Picture Updated', 'success'));
-    // history.push("/me");
+    history.push('/me');
   } catch (err) {
     console.log(err.response.data.errors[0].msg);
     const errors = err.response.data.errors;

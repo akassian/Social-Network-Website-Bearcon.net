@@ -1,10 +1,12 @@
-import React, { Fragment, useState } from 'react';
+// This file is used for uploading avatar from client to Cloudinary through our server,
+// using Multer.
+// We are not using it in the current version of our project.
+// We instead upload avatar from client directly to Cloudinary.
 
-import { Link, withRouter } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
-
 import { uploadFile } from '../../actions/profile';
 
 const UploadFile = ({ uploadFile, history }) => {
@@ -20,13 +22,7 @@ const UploadFile = ({ uploadFile, history }) => {
   return (
     <Fragment>
       {' '}
-      <h1 className='large text-primary'>Add A Course</h1>{' '}
-      <p className='lead'>
-        {' '}
-        <i className='fas fa-code-branch' /> Add any course of relevant
-        experience you have taken.{' '}
-      </p>{' '}
-      <small>*=required field</small>{' '}
+      <h1 className='large text-primary'>Add Avatar Picture</h1>{' '}
       <form
         className='form'
         onSubmit={e => {
@@ -40,10 +36,6 @@ const UploadFile = ({ uploadFile, history }) => {
           <input type='file' accept='image/*' onChange={onChange} />
         </div>{' '}
         <input type='submit' className='btn btn-primary my-1' />{' '}
-        <Link className='btn btn-light my-1' to='/login'>
-          {' '}
-          Go Back{' '}
-        </Link>{' '}
       </form>{' '}
     </Fragment>
   );

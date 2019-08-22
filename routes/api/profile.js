@@ -163,7 +163,7 @@ router.delete('/', auth, async (req, res) => {
   }
 });
 
-//@route Put api/profile/experience
+//@route POST api/profile/experience
 //@desc  profile/user/posts
 //@access private
 router.post(
@@ -470,7 +470,7 @@ router.get('/github/:username', (req, res) => {
   }
 });
 
-//@route Put api/profile/course
+//@route POST api/profile/course
 //@desc Add profile course
 //@access private
 router.post(
@@ -504,7 +504,7 @@ router.post(
   }
 );
 
-//@route DELete api/profile/course/:course_id
+//@route DELETE api/profile/course/:course_id
 //@desc Delete course from profile
 //@access private
 router.delete('/course/:course_id', auth, async (req, res) => {
@@ -523,13 +523,9 @@ router.delete('/course/:course_id', auth, async (req, res) => {
   }
 });
 
-// Client ID
-// ac72f96a5f2681873560
-// Client Secret
-// beacf38f862b382ab1057bc5cfb890ddd55beb4a
 module.exports = router;
 
-//@route edit api/profile/course/:coure_id
+//@route POST api/profile/course/:coure_id
 //@desc edit course from profile
 //@access private
 router.post(
@@ -573,6 +569,43 @@ router.post(
   }
 );
 
+//@route POST api/profile/upload
+//@desc upload avatar from client to Cloudinary through our server, using Multer.
+//We are not using it in the current version of our project.
+// We instead upload avatar from client directly to Cloudinary.
+
+//@access private
+
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+
+cloudinary.config({
+  cloud_name: 'akass1122',
+  api_key: '143449497712777',
+  api_secret: '16JwUkJF4jkbcPW6ADk6KbHXysU'
+});
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+router.post('/upload', [auth, upload.single('photo')], async (req, res) => {
+  cloudinary.uploader
+    .upload_stream(async result => {
+      try {
+        let profile = await Profile.findOne({ user: req.user.id });
+        profile.images.picture = result.secure_url.toString();
+        await profile.save(function(err) {
+          if (!err) console.log('success!');
+        });
+        return res.json(profile);
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+      }
+    })
+    .end(req.file.buffer);
+});
+
 //@route POST api/profile/avatar
 //@desc upload avatar for profile
 //@access private
@@ -580,7 +613,6 @@ router.post(
 router.post('/avatar', auth, async (req, res) => {
   try {
     // console.log("server: req.body:  ", req.body);
-    // console.log("req.body.picture: ", req.body.picture);
     let profile = await Profile.findOne({ user: req.user.id });
     //console.log("profile:", profile);
     profile.images.picture = req.body.picture;
@@ -594,13 +626,12 @@ router.post('/avatar', auth, async (req, res) => {
 });
 
 //@route POST api/profile/avatar
-//@desc upload avatar for profile
+//@desc upload cover for profile
 //@access private
 
 router.post('/cover', auth, async (req, res) => {
   try {
     // console.log("server: req.body:  ", req.body);
-    // console.log("req.body.picture: ", req.body.picture);
     let profile = await Profile.findOne({ user: req.user.id });
     //console.log("profile:", profile);
     profile.images.cover = req.body.cover;
@@ -638,8 +669,4 @@ router.post('/cover', auth, async (req, res) => {
 //   }
 // );
 
-// Client ID
-// ac72f96a5f2681873560
-// Client Secret
-// beacf38f862b382ab1057bc5cfb890ddd55beb4a
 module.exports = router;

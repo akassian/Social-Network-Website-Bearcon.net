@@ -6,33 +6,6 @@ import { connect } from 'react-redux';
 import { uploadAvatar, uploadCover } from '../../actions/profile';
 
 const UploadImages = ({ uploadAvatar, uploadCover, history }) => {
-  //let formData = new FormData();
-
-  // const onSubmitAvatar = e => {
-  //   //formData.append("picture", e.target.files[0]);
-
-  //   //formData.append("description", "Night Sky");  //if user wants to add a description of the picture
-  //   // "photo" is the name in in upload.single("photo") in server routing app.post(...)
-  //   //app.post("/uploading", [auth, upload.single("photo")], uploadcallback);
-  //   // If console.log a FormData, it will show an empty object, so need to
-  //   // console.log entries of a FormData
-  //   for (var pair of formData.entries()) {
-  //     console.log("formData: ", pair[0] + ", " + pair[1]);
-  //   }
-  //   uploadAvatar(formData, history);
-  // };
-
-  // const onSubmitCover = e => {
-  //   //formData = new FormData();
-  //   formData.append("cover", e.target.files[0]);
-  //   //formData.append("description", "Night Sky");  //if user wants to add a description of the picture
-  //   // If console.log a FormData, it will show an empty object, so need to
-  //   // console.log entries of a FormData
-  //   for (var pair of formData.entries()) {
-  //     console.log(pair[0] + ", " + pair[1]);
-  //   }
-
-  // };
   let images1 = { picture: '' };
   let myWidget1 = window.cloudinary.createUploadWidget(
     {
@@ -41,17 +14,14 @@ const UploadImages = ({ uploadAvatar, uploadCover, history }) => {
     },
     (error, result) => {
       if (!error && result && result.event === 'success') {
-        console.log('result: ', result);
-        // console.log("Done! Here is the avatar image info: ", result.info);
-        // console.log("result.info.secure_url: ", result.info.secure_url);
-        // formData.append("picture", result.info.secure_url);
+        //console.log('result: ', result);
         images1.picture = result.info.secure_url;
+        uploadAvatar(images1, history);
       }
     }
   );
 
   let images2 = { cover: '' };
-
   let myWidget2 = window.cloudinary.createUploadWidget(
     {
       cloudName: 'akass1122',
@@ -59,68 +29,33 @@ const UploadImages = ({ uploadAvatar, uploadCover, history }) => {
     },
     (error, result) => {
       if (!error && result && result.event === 'success') {
-        console.log('result: ', result);
-        // console.log("Done! Here is the cover image info: ", result.info);
-        // console.log("result.info.secure_url: ", result.info.secure_url);
+        //console.log('result: ', result);
         images2.cover = result.info.secure_url;
+        uploadCover(images2, history);
       }
     }
   );
 
   return (
     <Fragment>
-      {/* //========================================================= */}{' '}
-      <h1 className='large text-primary'>Upload Image</h1>{' '}
-      <form
-        className='form'
-        onSubmit={e => {
-          e.preventDefault();
-          uploadAvatar(images1, history);
+      <h1 className='large text-primary'>Upload Avatar</h1>{' '}
+      <button
+        className='btn btn-primary my-1'
+        onClick={() => {
+          myWidget1.open();
         }}
       >
-        {' '}
-        <div className='form-group'>
-          <p className='lead'> Choose your avatar / cover image. </p>
-          <div>
-            <button
-              className='btn btn-primary my-1'
-              onClick={() => {
-                myWidget1.open();
-              }}
-            >
-              Upload Avatar
-            </button>
-          </div>
-        </div>{' '}
-        <input type='submit' value='Update Avatar' className='btn btn-dark' />{' '}
-      </form>{' '}
-      {/* //========================================================= */}
-      {/* //========================================================= */}{' '}
-      <form
-        className='form'
-        onSubmit={e => {
-          e.preventDefault();
-          console.log('images2: ', images2);
-          uploadCover(images2, history);
+        Upload Avatar
+      </button>
+      <h1 className='large text-primary'>Upload Cover</h1>{' '}
+      <button
+        className='btn btn-primary my-1'
+        onClick={() => {
+          myWidget2.open();
         }}
       >
-        {' '}
-        <div className='form-group'>
-          {' '}
-          <div>
-            <button
-              className='btn btn-primary my-1'
-              onClick={() => {
-                myWidget2.open();
-              }}
-            >
-              Upload Cover
-            </button>
-          </div>
-        </div>{' '}
-        <input type='submit' value='Update Cover' className='btn btn-dark' />{' '}
-      </form>{' '}
-      {/* //========================================================= */}
+        Upload Cover
+      </button>
     </Fragment>
   );
 };

@@ -30,7 +30,7 @@ const MyProfile = ({
       ) : (
         <Fragment>
           <Link to='/profiles' className='btn btn-light'>
-            Back To Profiles
+            Go To Profiles
           </Link>
           {auth.isAuthenticated && auth.loading === false && (
             <Link to='/edit-profile' className='btn btn-dark'>
