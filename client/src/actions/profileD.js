@@ -14,7 +14,7 @@ import {
 //Get current users profile
 export const getCurrentProfile = () => async dispatch => {
   try {
-    const res = await axios.get('api/profile/me');
+    const res = await axios.get('http://localhost:5000/api/profile/me');
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -32,7 +32,7 @@ export const getProfiles = () => async dispatch => {
   dispatch({ type: CLEAR_PROFILE });
 
   try {
-    const res = await axios.get('api/profile');
+    const res = await axios.get('http://localhost:5000/api/profile');
 
     dispatch({
       type: GET_PROFILES,
@@ -96,7 +96,11 @@ export const createProfile = (
         'Content-Type': 'application/json'
       }
     };
-    const res = await axios.post('api/profile', formData, config);
+    const res = await axios.post(
+      'http://localhost:5000/api/profile',
+      formData,
+      config
+    );
     dispatch({
       type: GET_PROFILE,
       payload: res.data
@@ -128,7 +132,11 @@ export const addExperience = (formData, history) => async dispatch => {
       }
     };
 
-    const res = await axios.post('api/profile/experience', formData, config);
+    const res = await axios.post(
+      'http://localhost:5000/api/profile/experience',
+      formData,
+      config
+    );
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -161,7 +169,11 @@ export const addEducation = (formData, history) => async dispatch => {
       }
     };
 
-    const res = await axios.post('api/profile/education', formData, config);
+    const res = await axios.post(
+      'http://localhost:5000/api/profile/education',
+      formData,
+      config
+    );
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -306,7 +318,7 @@ export const deleteEducation = (history, id) => async dispatch => {
 export const deleteAccount = () => async dispatch => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
-      await axios.delete('api/profile');
+      await axios.delete('http://localhost:5000/api/profile');
 
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });
@@ -328,7 +340,11 @@ export const addCourse = (formData, history) => async dispatch => {
       }
     };
 
-    const res = await axios.post('api/profile/course', formData, config);
+    const res = await axios.post(
+      'http://localhost:5000/api/profile/course',
+      formData,
+      config
+    );
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -411,6 +427,11 @@ export const editCourse = (formData, history, id) => async dispatch => {
   }
 };
 
+// This function is used for uploading avatar from client to Cloudinary through our server,
+// using Multer.
+// We are not using it in the current version of our project.
+// We instead upload avatar from client directly to Cloudinary.
+
 export const uploadFile = (formData, history) => async dispatch => {
   try {
     const config = {
@@ -419,7 +440,7 @@ export const uploadFile = (formData, history) => async dispatch => {
       }
     };
     const res = await axios.post(
-      'api/profile/upload',
+      'http://localhost:5000/api/profile/upload',
 
       formData,
       config
@@ -456,7 +477,11 @@ export const uploadAvatar = (images, history) => async dispatch => {
         'Content-Type': 'application/json'
       }
     };
-    const res = await axios.post('api/profile/avatar', images, config);
+    const res = await axios.post(
+      'http://localhost:5000/api/profile/avatar',
+      images,
+      config
+    );
     console.log('status: ', res.status);
     dispatch({
       type: UPDATE_PROFILE,
@@ -486,7 +511,11 @@ export const uploadCover = (images, history) => async dispatch => {
         'Content-Type': 'application/json'
       }
     };
-    const res = await axios.post('api/profile/cover', images, config);
+    const res = await axios.post(
+      'http://localhost:5000/api/profile/cover',
+      images,
+      config
+    );
     console.log('status: ', res.status);
     dispatch({
       type: UPDATE_PROFILE,
