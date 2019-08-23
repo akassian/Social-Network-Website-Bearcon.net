@@ -10,7 +10,8 @@ const UploadImages = ({ uploadAvatar, uploadCover, history }) => {
   let myWidget1 = window.cloudinary.createUploadWidget(
     {
       cloudName: 'akass1122',
-      uploadPreset: 'defaultPreset'
+      uploadPreset: 'coverpreset',
+      cropping: 'server'
     },
     (error, result) => {
       if (!error && result && result.event === 'success') {
@@ -25,7 +26,7 @@ const UploadImages = ({ uploadAvatar, uploadCover, history }) => {
   let myWidget2 = window.cloudinary.createUploadWidget(
     {
       cloudName: 'akass1122',
-      uploadPreset: 'defaultPreset'
+      uploadPreset: 'coverpreset'
     },
     (error, result) => {
       if (!error && result && result.event === 'success') {
@@ -39,6 +40,7 @@ const UploadImages = ({ uploadAvatar, uploadCover, history }) => {
   return (
     <Fragment>
       <h1 className='large text-primary'>Upload Avatar</h1>{' '}
+      <p className='lead'>For best results, crop image into a square.</p>
       <button
         className='btn btn-primary my-1'
         onClick={() => {

@@ -12,8 +12,6 @@ const AddCourse = ({ addCourse, history }) => {
     title: ''
   });
 
-  const [toDateDisabled, toggleDisabled] = useState(false);
-
   const { title } = formData;
 
   const onChange = e =>
@@ -28,8 +26,7 @@ const AddCourse = ({ addCourse, history }) => {
       <h1 className='large text-primary'>Add A Course</h1>{' '}
       <p className='lead'>
         {' '}
-        <i className='fas fa-code-branch' /> Add any course of relevant
-        experience you have taken.{' '}
+        <i className='fas fa-code-branch' /> Add any course you have taken.{' '}
       </p>{' '}
       <small>*=required field</small>{' '}
       <form
@@ -52,7 +49,7 @@ const AddCourse = ({ addCourse, history }) => {
           />{' '}
         </div>{' '}
         <input type='submit' className='btn btn-primary my-1' />{' '}
-        <Link className='btn btn-light my-1' to='/login'>
+        <Link className='btn btn-light my-1' to='/me'>
           {' '}
           Go Back{' '}
         </Link>{' '}
