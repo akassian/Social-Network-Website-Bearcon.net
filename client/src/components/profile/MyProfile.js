@@ -62,7 +62,7 @@ const MyProfile = ({
                   ))}
                 </Fragment>
               ) : (
-                <h4>No experience credentials</h4>
+                <h4>No experience listed</h4>
               )}
             </div>
 
@@ -91,7 +91,7 @@ const MyProfile = ({
                   ))}
                 </Fragment>
               ) : (
-                <h4>No education credentials</h4>
+                <h4>No education listed</h4>
               )}
             </div>
 
