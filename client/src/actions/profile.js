@@ -50,7 +50,7 @@ export const getProfiles = () => async dispatch => {
 export const getProfileById = userId => async dispatch => {
   try {
     const res = await axios.get(
-      `http://localhost:5000/api/profile/user/${userId}`
+      `/api/profile/user/${userId}`
     );
 
     dispatch({
@@ -69,7 +69,7 @@ export const getProfileById = userId => async dispatch => {
 export const getGithubRepos = username => async dispatch => {
   try {
     const res = await axios.get(
-      `http://localhost:5000/api/profile/github/${username}`
+      `/api/profile/github/${username}`
     );
 
     dispatch({
@@ -192,9 +192,9 @@ export const editExperience = (formData, history, id) => async dispatch => {
       }
     };
 
-    // console.log('Go to ', `http://localhost:5000/api/profile/education/${id}`);
+    // console.log('Go to ', `/api/profile/education/${id}`);
     const res = await axios.post(
-      `http://localhost:5000/api/profile/experience/${id}`,
+      `/api/profile/experience/${id}`,
       formData,
       config
     );
@@ -228,7 +228,7 @@ export const editEducation = (formData, history, id) => async dispatch => {
       }
     };
     const res = await axios.post(
-      `http://localhost:5000/api/profile/education/${id}`,
+      `/api/profile/education/${id}`,
       formData,
       config
     );
@@ -257,7 +257,7 @@ export const editEducation = (formData, history, id) => async dispatch => {
 export const deleteExperience = (history, id) => async dispatch => {
   try {
     const res = await axios.delete(
-      `http://localhost:5000/api/profile/experience/${id}`
+      `/api/profile/experience/${id}`
     );
 
     dispatch({
@@ -278,7 +278,7 @@ export const deleteExperience = (history, id) => async dispatch => {
 export const deleteEducation = (history, id) => async dispatch => {
   try {
     const res = await axios.delete(
-      `http://localhost:5000/api/profile/education/${id}`
+      `/api/profile/education/${id}`
     );
 
     dispatch({
@@ -350,7 +350,7 @@ export const addCourse = (formData, history) => async dispatch => {
 export const deleteCourse = (history, id) => async dispatch => {
   try {
     const res = await axios.delete(
-      `http://localhost:5000/api/profile/course/${id}`
+      `/api/profile/course/${id}`
     );
 
     dispatch({
@@ -378,7 +378,7 @@ export const editCourse = (formData, history, id) => async dispatch => {
       }
     };
     const res = await axios.post(
-      `http://localhost:5000/api/profile/course/${id}`,
+      `/api/profile/course/${id}`,
       formData,
       config
     );
