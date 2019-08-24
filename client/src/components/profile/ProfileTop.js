@@ -18,8 +18,7 @@ const ProfileTop = ({
     <div className='profile-top bg-primary p-2'>
       <div className='cover-overlay' />
       <div class='bg-cover'>
-        {/* <p>Background taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaext</p> */}
-        <img src={picture === '' ? '' : cover} alt='' />
+        <img src={cover} alt='' />
       </div>
       <div class='content'>
         {edit && (

@@ -84,7 +84,9 @@ const Navbar = ({
       </li>
       <li>
         <Link to='/about'>
+          {''}
           <i className='fas fa-info-circle' />
+          <span className='hide-sm'>About</span>
         </Link>
       </li>
     </ul>
