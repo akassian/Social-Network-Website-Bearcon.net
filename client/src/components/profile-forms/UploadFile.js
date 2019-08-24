@@ -14,9 +14,9 @@ const UploadFile = ({ uploadFile, history }) => {
   const onChange = e => {
     data = new FormData();
     data.append('photo', e.target.files[0]);
-    for (var pair of data.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
+    // for (var pair of data.entries()) {
+    //   console.log(pair[0] + ', ' + pair[1]);
+    // }
   };
 
   return (
