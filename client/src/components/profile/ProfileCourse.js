@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'react-moment';
-import moment from 'moment';
+// import Moment from 'react-moment';
+// import moment from 'moment';
 import { Link, withRouter } from 'react-router-dom';
 import { deleteCourse } from '../../actions/profile';
 import { connect } from 'react-redux';
@@ -21,8 +21,6 @@ const ProfileCourses = ({
             onClick={() => deleteCourse(history, _id)}
             className='btn-del rightside'
           >
-            {/* {console.log(history)}
-            {console.log(_id)} */}
             <i className='fas fa-minus-circle' />
           </button>
           <Link title='Edit' to={`/edit-course/${_id}`} className='rightside'>
@@ -44,4 +42,3 @@ export default connect(
   null,
   { deleteCourse }
 )(withRouter(ProfileCourses));
-// export default ProfileCourses;

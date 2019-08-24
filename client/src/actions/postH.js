@@ -14,7 +14,7 @@ import {
 // Get posts
 export const getPosts = () => async dispatch => {
   try {
-    const res = await axios.get('http://localhost:5000/api/posts');
+    const res = await axios.get('api/posts');
 
     dispatch({
       type: GET_POSTS,
@@ -90,11 +90,7 @@ export const addPost = formData => async dispatch => {
   };
 
   try {
-    const res = await axios.post(
-      'http://localhost:5000/api/posts',
-      formData,
-      config
-    );
+    const res = await axios.post('api/posts', formData, config);
 
     dispatch({
       type: ADD_POST,

@@ -1,19 +1,14 @@
 import React, { Fragment, useState } from 'react';
-
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
-
 import { addCourse } from '../../actions/profile';
 
 const AddCourse = ({ addCourse, history }) => {
   const [formData, setFormData] = useState({
     title: ''
   });
-
   const { title } = formData;
-
   const onChange = e =>
     setFormData({
       ...formData,

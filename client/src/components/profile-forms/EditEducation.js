@@ -1,29 +1,15 @@
 import React, { Fragment, useState, useEffect } from 'react';
-
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
-
-import { createProfile, getCurrentProfile } from '../../actions/profile';
-
-import { deleteAccount } from '../../actions/profile';
-
+import { getCurrentProfile } from '../../actions/profile';
 import { editEducation } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
-import DashboardActions from '../dashboard/DashboardActions';
-
-import Experience from '../dashboard/Experience';
-import Education from '../dashboard/Education';
-
 const EditEducation = ({
   profile: { profile, loading },
-
-  // createProfile,
   getCurrentProfile,
   editEducation,
   history,
-  // deleteAccount,
   auth: { user },
 
   match
@@ -38,33 +24,11 @@ const EditEducation = ({
     description: ''
   });
 
-  // => {
-  //   const [formData, setFormData] = useState({
-  //     company: "",
-  //     website: "",
-  //     location: "",
-  //     status: "",
-  //     skills: "",
-  //     githubusername: "",
-
-  //     bio: "",
-  //     twitter: "",
-  //     facebook: "",
-  //     linkedin: "",
-  //     youtube: "",
-  //     instagram: ""
-  //   });
-
-  //   const [displaySocialInputs, toggleSocialInputs] = useState(false);
-  // console.log('match: ', match);
   const eduId = match.params.eduId;
-  // console.log('eduId: ', eduId);
-  // if (loading && profile === null) {
-  //   return <Spinner />;
-  // }
 
   useEffect(() => {
-    getCurrentProfile(); // get profile of the current user from server (which takes from database) and put it in store
+    getCurrentProfile(); // get profile of the current user from server (which takes from database)
+    // and put it in store.
     // console.log('profile: ', profile);
     const eduArray = profile.education;
     const eduToEdit = eduArray.find(edu => edu._id === eduId);
@@ -83,23 +47,6 @@ const EditEducation = ({
     });
   }, [loading, getCurrentProfile]);
 
-  //   setFormData({
-  //     company: loading || !profile.company ? "" : profile.company,
-  //     website: loading || !profile.website ? "" : profile.website,
-  //     location: loading || !profile.location ? "" : profile.location,
-  //     status: loading || !profile.status ? "" : profile.status,
-  //     skills: loading || !profile.skills ? "" : profile.skills.join(","),
-  //     githubusername:
-  //       loading || !profile.githubusername ? "" : profile.githubusername,
-  //     bio: loading || !profile.bio ? "" : profile.bio,
-  //     twitter: loading || !profile.social ? "" : profile.social.twitter,
-  //     facebook: loading || !profile.social ? "" : profile.social.facebook,
-  //     linkedin: loading || !profile.social ? "" : profile.social.linkedin,
-  //     youtube: loading || !profile.social ? "" : profile.social.youtube,
-  //     instagram: loading || !profile.social ? "" : profile.social.instagram
-  //   });
-  // }, [loading, getCurrentProfile]);
-
   const {
     school,
     degree,
@@ -110,21 +57,6 @@ const EditEducation = ({
     description
   } = formData; // detructure local state into variables
 
-  // const {
-  //   company,
-  //   website,
-  //   location,
-  //   status,
-  //   skills,
-  //   githubusername,
-  //   bio,
-  //   twitter,
-  //   facebook,
-  //   linkedin,
-  //   youtube,
-  //   instagram
-  // } = formData;
-
   const onChange = e =>
     setFormData({
       ...formData,
@@ -133,10 +65,9 @@ const EditEducation = ({
 
   const onSubmit = e => {
     e.preventDefault();
-    editEducation(formData, history, eduId); // true means edit = true
+    editEducation(formData, history, eduId);
   };
 
-  // return (
   return loading && profile === null ? (
     <Spinner />
   ) : (
@@ -187,7 +118,6 @@ const EditEducation = ({
         <div className='form-group'>
           {' '}
           <h4>From Date</h4>
-          {/* {console.log(type(from))}; */}
           <input
             type='date'
             name='from'
@@ -267,23 +197,3 @@ export default connect(
     editEducation
   }
 )(withRouter(EditEducation));
-
-//=====================
-// EditProfile.propTypes = {
-//   createProfile: PropTypes.func.isRequired,
-//   getCurrentProfile: PropTypes.func.isRequired,
-//   profile: PropTypes.object.isRequired,
-
-//   deleteAccount: PropTypes.func.isRequired,
-//   auth: PropTypes.object.isRequired
-// };
-
-// const mapStateToProps = state => ({
-//   auth: state.auth,
-//   profile: state.profile
-// });
-
-// export default connect(
-//   mapStateToProps,
-//   { createProfile, getCurrentProfile, deleteAccount }
-// )(withRouter(EditProfile));

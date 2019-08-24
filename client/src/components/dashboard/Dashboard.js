@@ -4,11 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
-import DashboardActions from './DashboardActions';
-
-import Experience from './Experience';
-import Education from './Education';
-// import { privateDecrypt } from 'crypto';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -23,11 +18,6 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment>
-      {/* <h1 className='large text-primary'>Dashboard</h1> */}
-      {/* <p className='lead'>
-        <i className='fas fa-user' />
-        Welcome {user && user.name}
-      </p> */}
       {profile !== null ? (
         <Redirect to={`/me`} />
       ) : (
@@ -36,6 +26,11 @@ const Dashboard = ({
           <Link to='/create-profile' className='btn btn-primary my-1'>
             Create Profile
           </Link>
+          <div className='my-2'>
+            <button className='btn btn-danger' onClick={() => deleteAccount()}>
+              <i className='fas fa-user-slash' /> Delete Account
+            </button>
+          </div>
         </Fragment>
       )}
     </Fragment>

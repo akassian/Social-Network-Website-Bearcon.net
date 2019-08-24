@@ -97,9 +97,11 @@ const ProfileTop = ({
             <br />
             <br />
             <p>
-              <Link to='/upload' className='btn btn-dark'>
-                Add or update avatar and cover pictures
-              </Link>
+              {edit && (
+                <Link to='/upload' className='btn btn-dark'>
+                  Add or update avatar and cover pictures
+                </Link>
+              )}
             </p>
           </div>
         </div>

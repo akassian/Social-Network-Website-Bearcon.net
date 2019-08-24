@@ -1,10 +1,8 @@
 import React, { Fragment, useState } from 'react';
-import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
-import Spinner from '../layout/Spinner';
 
 const Login = ({ login, isAuthenticated, auth }) => {
   const [formData, setFormData] = useState({
@@ -18,37 +16,10 @@ const Login = ({ login, isAuthenticated, auth }) => {
   const onSubmit = async e => {
     e.preventDefault();
     login(email, password);
-    //console.log('SUCCESS');
-    // const newUser = {
-    //   name,
-    //   email,
-    //   password
-    // };
-    // try {
-    //   const config = {
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     }
-    //   };
-    //   const body = JSON.stringify(newUser);
-    //   const res = await axios.post('http://localhost:5000/api/users', body, config);
-    //   console.log(res.data);
-    // } catch (err) {
-    //   console.error(err.response.data);
-    // }
   };
   if (auth.user && isAuthenticated && !auth.loading) {
-    // return <Redirect to={`profile/${auth.user._id}`} />;
     return <Redirect to='/dashboard' />;
   }
-
-  // if (auth.loading) {
-  //   return <Spinner />;
-  // }
-  //Redirect if logged in
-  // if (isAuthenticated) {
-  //   return <Redirect to={`/profile/${auth.user._id}`} />;
-  // }
 
   return (
     <Fragment>

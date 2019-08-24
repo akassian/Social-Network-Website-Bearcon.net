@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
-import moment from 'moment';
+//import moment from 'moment';
 import { deleteComment } from '../../actions/post';
 
 const CommentItem = ({
@@ -21,7 +21,6 @@ const CommentItem = ({
     </div>
     <div>
       <p className='my-1'>{text}</p>
-      {/* <Fragment> */}
       <p className='post-date inblock'>
         {/* Posted on <Moment format='MM/DD/YYYY'>{date}</Moment>
          */}
@@ -37,7 +36,6 @@ const CommentItem = ({
           <i className='fa fa-times-circle' />
         </button>
       )}
-      {/* </Fragment> */}
     </div>
   </div>
 );

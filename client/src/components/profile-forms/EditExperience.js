@@ -2,22 +2,13 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile, getCurrentProfile } from '../../actions/profile';
-
-import { deleteAccount } from '../../actions/profile';
-import { editExperience } from '../../actions/profile';
+import { getCurrentProfile, editExperience } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
-import DashboardActions from '../dashboard/DashboardActions';
-
-import Experience from '../dashboard/Experience';
-
 const EditExperience = ({
   profile: { profile, loading },
-  // createProfile,
   getCurrentProfile,
   editExperience,
   history,
-  // deleteAccount,
   auth: { user },
   match
 }) => {
@@ -31,30 +22,9 @@ const EditExperience = ({
     description: ''
   });
 
-  // => {
-  //   const [formData, setFormData] = useState({
-  //     company: "",
-  //     website: "",
-  //     location: "",
-  //     status: "",
-  //     skills: "",
-  //     githubusername: "",
-
-  //     bio: "",
-  //     twitter: "",
-  //     facebook: "",
-  //     linkedin: "",
-  //     youtube: "",
-  //     instagram: ""
-  //   });
-
-  //   const [displaySocialInputs, toggleSocialInputs] = useState(false);
-  console.log('match: ', match);
+  //console.log('match: ', match);
   const expId = match.params.expId;
-  console.log('expId: ', expId);
-  // if (loading && profile === null) {
-  //   return <Spinner />;
-  // }
+  //console.log('expId: ', expId);
 
   useEffect(() => {
     getCurrentProfile(); // get profile of the current user from server (which takes from database) and put it in store
@@ -74,40 +44,7 @@ const EditExperience = ({
     });
   }, [loading, getCurrentProfile]);
 
-  //   setFormData({
-  //     company: loading || !profile.company ? "" : profile.company,
-  //     website: loading || !profile.website ? "" : profile.website,
-  //     location: loading || !profile.location ? "" : profile.location,
-  //     status: loading || !profile.status ? "" : profile.status,
-  //     skills: loading || !profile.skills ? "" : profile.skills.join(","),
-  //     githubusername:
-  //       loading || !profile.githubusername ? "" : profile.githubusername,
-  //     bio: loading || !profile.bio ? "" : profile.bio,
-  //     twitter: loading || !profile.social ? "" : profile.social.twitter,
-  //     facebook: loading || !profile.social ? "" : profile.social.facebook,
-  //     linkedin: loading || !profile.social ? "" : profile.social.linkedin,
-  //     youtube: loading || !profile.social ? "" : profile.social.youtube,
-  //     instagram: loading || !profile.social ? "" : profile.social.instagram
-  //   });
-  // }, [loading, getCurrentProfile]);
-
-  const { company, title, location, from, to, current, description } = formData; // detructure local state into variables
-
-  // const {
-  //   company,
-  //   website,
-  //   location,
-  //   status,
-  //   skills,
-  //   githubusername,
-  //   bio,
-  //   twitter,
-  //   facebook,
-  //   linkedin,
-  //   youtube,
-  //   instagram
-  // } = formData;
-
+  const { company, title, location, from, to, current, description } = formData; // detructure local state into
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -116,7 +53,6 @@ const EditExperience = ({
     editExperience(formData, history, expId); // true means edit = true
   };
 
-  // return (
   return loading && profile === null ? (
     <Spinner />
   ) : (
@@ -227,23 +163,3 @@ export default connect(
   mapStateToProps,
   { getCurrentProfile, editExperience }
 )(withRouter(EditExperience));
-
-//=====================
-// EditProfile.propTypes = {
-//   createProfile: PropTypes.func.isRequired,
-//   getCurrentProfile: PropTypes.func.isRequired,
-//   profile: PropTypes.object.isRequired,
-
-//   deleteAccount: PropTypes.func.isRequired,
-//   auth: PropTypes.object.isRequired
-// };
-
-// const mapStateToProps = state => ({
-//   auth: state.auth,
-//   profile: state.profile
-// });
-
-// export default connect(
-//   mapStateToProps,
-//   { createProfile, getCurrentProfile, deleteAccount }
-// )(withRouter(EditProfile));

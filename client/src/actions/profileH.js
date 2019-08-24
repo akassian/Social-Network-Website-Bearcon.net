@@ -102,7 +102,10 @@ export const createProfile = (
       payload: res.data
     });
     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
-    history.push('/me');
+    // if (!edit) {
+    //   history.push('/dashboard');
+    // }
+    history.push('/login');
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -134,7 +137,7 @@ export const addExperience = (formData, history) => async dispatch => {
 
     dispatch(setAlert('Experience Added', 'success'));
 
-    history.push('/me');
+    history.push('/login');
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -167,7 +170,7 @@ export const addEducation = (formData, history) => async dispatch => {
 
     dispatch(setAlert('Education Added', 'success'));
 
-    history.push('/me');
+    history.push('/login');
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -204,7 +207,7 @@ export const editExperience = (formData, history, id) => async dispatch => {
     });
     dispatch(setAlert('Experience Edited', 'success'));
 
-    history.push('/me');
+    history.push('/login');
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -222,11 +225,14 @@ export const editExperience = (formData, history, id) => async dispatch => {
 // Edit Education
 export const editEducation = (formData, history, id) => async dispatch => {
   try {
+    // console.log('insie action', id);
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     };
+
+    // console.log('Go to ', `http://localhost:5000/api/profile/education/${id}`);
     const res = await axios.post(
       `http://localhost:5000/api/profile/education/${id}`,
       formData,
@@ -238,7 +244,7 @@ export const editEducation = (formData, history, id) => async dispatch => {
     });
     dispatch(setAlert('Education Edited', 'success'));
 
-    history.push('/me');
+    history.push('/login');
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -264,7 +270,7 @@ export const deleteExperience = (history, id) => async dispatch => {
       type: UPDATE_PROFILE,
       payload: res.data
     });
-    history.push('/me');
+    history.push('/login');
     dispatch(setAlert('Experience Removed', 'success'));
   } catch (err) {
     dispatch({
@@ -286,7 +292,7 @@ export const deleteEducation = (history, id) => async dispatch => {
       payload: res.data
     });
     console.log(res.data);
-    history.push('/me');
+    history.push('/login');
     dispatch(setAlert('Education Removed', 'success'));
   } catch (err) {
     dispatch({
@@ -331,7 +337,7 @@ export const addCourse = (formData, history) => async dispatch => {
 
     dispatch(setAlert('Course Added', 'success'));
 
-    history.push('/me');
+    history.push('/login');
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -377,6 +383,8 @@ export const editCourse = (formData, history, id) => async dispatch => {
         'Content-Type': 'application/json'
       }
     };
+
+    // console.log('Go to ', `http://localhost:5000/api/profile/education/${id}`);
     const res = await axios.post(
       `http://localhost:5000/api/profile/course/${id}`,
       formData,
@@ -388,7 +396,7 @@ export const editCourse = (formData, history, id) => async dispatch => {
     });
     dispatch(setAlert('Course Edited', 'success'));
 
-    history.push('/me');
+    history.push('/login');
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -402,8 +410,7 @@ export const editCourse = (formData, history, id) => async dispatch => {
     });
   }
 };
-// Upload a file to server, then server uploads it to Cloudinary and saves
-// the url in MongoDB. Not used in the current version of the project.
+
 export const uploadFile = (formData, history) => async dispatch => {
   try {
     const config = {
@@ -440,7 +447,6 @@ export const uploadFile = (formData, history) => async dispatch => {
   }
 };
 
-// Send the url of uploaded avatar (to Cloudinary) to MongoDB.
 export const uploadAvatar = (images, history) => async dispatch => {
   try {
     console.log('action');
@@ -471,9 +477,10 @@ export const uploadAvatar = (images, history) => async dispatch => {
   }
 };
 
-// Send the url of uploaded cover (to Cloudinary) to MongoDB.
 export const uploadCover = (images, history) => async dispatch => {
   try {
+    //console.log("action");
+    //console.log("images with cover in action", images);
     const config = {
       headers: {
         'Content-Type': 'application/json'

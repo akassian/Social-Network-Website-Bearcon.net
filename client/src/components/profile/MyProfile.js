@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import ProfileTop from './ProfileTop';
@@ -9,10 +9,9 @@ import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
 import ProfileCourse from './ProfileCourse';
 import ProfileGithub from './ProfileGithub';
-import { getProfileById, getCurrentProfile } from '../../actions/profile';
+import { getCurrentProfile } from '../../actions/profile';
 
 const MyProfile = ({
-  getProfileById,
   getCurrentProfile,
   profile: { profile, loading },
   auth
@@ -20,8 +19,6 @@ const MyProfile = ({
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
-
-  //, match.params.id
 
   return (
     <Fragment>
@@ -38,7 +35,6 @@ const MyProfile = ({
             </Link>
           )}
           <div className='profile-grid my-1'>
-            {/* <ProfileTop profile={profile} /> */}
             <ProfileTop profile={profile} edit={true} />
             <ProfileAbout profile={profile} edit={true} />
             <div className='profile-exp bg-white p-2'>
@@ -74,11 +70,6 @@ const MyProfile = ({
                     <i className='fas fa-plus-circle' /> Add Education
                   </Link>
                 )}
-                {/* {auth.isAuthenticated && auth.loading === false && (
-                  <Link to='/add-course' className='btn btn-gray rightside'>
-                    <i className='fas fa-plus-circle' /> Add Course
-                  </Link>
-                )} */}
               </h2>
               {profile.education.length > 0 ? (
                 <Fragment>

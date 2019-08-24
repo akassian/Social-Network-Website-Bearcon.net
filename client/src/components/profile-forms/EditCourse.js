@@ -1,12 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
-
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
-
 import { getCurrentProfile } from '../../actions/profile';
-
 import { editCourse } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 
@@ -29,7 +25,6 @@ const EditCourse = ({
     // console.log('profile: ', profile);
     const courseArray = profile.courses;
     const courseToEdit = courseArray.find(course => course._id === courseId);
-
     setFormData({
       // set local state to the values from profile from store
       title: loading || !courseToEdit.title ? '' : courseToEdit.title
