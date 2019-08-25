@@ -82,6 +82,10 @@ img {
     margin-bottom: 1rem;
 }
 
+.medium {
+    font-size: 1rem;
+}
+
 .text-center {
     text-align: center;
 }
@@ -815,6 +819,7 @@ button {
     .lead {
         font-size: 1rem;
     }
+    
 
     /* Navbar */
     .navbar {
