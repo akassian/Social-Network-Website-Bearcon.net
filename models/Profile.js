@@ -14,6 +14,13 @@ const ProfileSchema = new mongoose.Schema({
       default: ''
     }
   },
+  resume: {
+    url: {
+      type: String,
+      default: ''
+    }
+  },
+
   company: {
     type: String
   },

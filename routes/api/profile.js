@@ -447,9 +447,9 @@ router.get('/github/:username', (req, res) => {
     const options = {
       uri: `https://api.github.com/users/${
         req.params.username
-      }/repos?per_page=5&sort=created:asc&client_id=${config.get(
-        'githubClientId'
-      )}&client_secret=${config.get('githubSecret')}`,
+        }/repos?per_page=5&sort=created:asc&client_id=${config.get(
+          'githubClientId'
+        )}&client_secret=${config.get('githubSecret')}`,
       method: 'GET',
       headers: { 'user-agent': 'node.js' }
     };
@@ -594,7 +594,7 @@ router.post('/upload', [auth, upload.single('photo')], async (req, res) => {
       try {
         let profile = await Profile.findOne({ user: req.user.id });
         profile.images.picture = result.secure_url.toString();
-        await profile.save(function(err) {
+        await profile.save(function (err) {
           if (!err) console.log('success!');
         });
         return res.json(profile);
@@ -625,7 +625,7 @@ router.post('/avatar', auth, async (req, res) => {
   }
 });
 
-//@route POST api/profile/avatar
+//@route POST api/profile/cover
 //@desc upload cover for profile
 //@access private
 
@@ -635,6 +635,25 @@ router.post('/cover', auth, async (req, res) => {
     let profile = await Profile.findOne({ user: req.user.id });
     //console.log("profile:", profile);
     profile.images.cover = req.body.cover;
+    await profile.save();
+    //console.log("changed profile:", profile);
+    return res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+//@route POST api/profile/resume
+//@desc upload resume for profile
+//@access private
+
+router.post('/resume', auth, async (req, res) => {
+  try {
+    // console.log("server: req.body:  ", req.body);
+    let profile = await Profile.findOne({ user: req.user.id });
+    //console.log("profile:", profile);
+    profile.resume.url = req.body.url;
     await profile.save();
     //console.log("changed profile:", profile);
     return res.json(profile);

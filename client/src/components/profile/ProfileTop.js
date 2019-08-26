@@ -10,6 +10,7 @@ const ProfileTop = ({
     website,
     social,
     images: { picture, cover },
+    resume,
     user: { name, avatar }
   },
   edit
@@ -94,6 +95,10 @@ const ProfileTop = ({
                 <i className='fab fa-instagram fa-2x' />
               </a>
             )}
+            {/* <object width="100%" height="400" data="https://res.cloudinary.com/akass1122/image/upload/v1566795405/erg0uqvu1wv2ooyax5sw.pdf" type="application/pdf">   </object>
+
+            <object width="100%" height="400" data={resume.url} type="application/pdf">   </object> */}
+
             <br />
             <br />
             <p>

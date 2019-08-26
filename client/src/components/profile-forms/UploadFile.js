@@ -33,7 +33,8 @@ const UploadFile = ({ uploadFile, history }) => {
         {' '}
         <div>
           {' '}
-          <input type='file' accept='image/*' onChange={onChange} />
+          {/* <input type='file' accept='image/*' onChange={onChange} /> */}
+          <input type='file' accept='.pdf' onChange={onChange} />
         </div>{' '}
         <input type='submit' className='btn btn-primary my-1' />{' '}
       </form>{' '}

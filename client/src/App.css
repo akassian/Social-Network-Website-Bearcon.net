@@ -618,7 +618,8 @@ button {
         'about about'
         'exp edu'
         'crs crs'
-        'github github';
+        'github github'
+        'resume resume';
 
     grid-gap: 1rem;
 }
@@ -692,6 +693,10 @@ button {
     display: flex;
     flex-direction: column;
     /* align-items: center; */
+    /* text-align: center; */
+}
+.profile-resume {
+    grid-area: resume;
     /* text-align: center; */
 }
 
@@ -864,7 +869,9 @@ button {
             'about'
             'exp'
             'edu'
-            'github';
+            'crs'
+            'github'
+            'resume';
     }
 
     .profile-about .skills {
