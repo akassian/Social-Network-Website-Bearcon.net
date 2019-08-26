@@ -153,45 +153,7 @@ const Profile = ({
                     <h4>No courses listed</h4>
                   )}
               </div>
-              {/* <div className='profile-github bg-white p-2'>
-                {profile.githubusername && (
-                  <ProfileGithub username={profile.githubusername} edit={
-                    auth.isAuthenticated &&
-                    auth.loading === false &&
-                    auth.user._id === profile.user._id
-                  } />
-                )}
-              </div>
               <div className='profile-resume bg-white p-2'>
-                {profile.resume && profile.resume.url !== '' && (<ProfileResume resume={profile.resume} edit={
-                  auth.isAuthenticated &&
-                  auth.loading === false &&
-                  auth.user._id === profile.user._id} />)}
-              </div>
-              <h2 className='text-primary'>
-
-
-                <Link to='/upload-resume' className='btn btn-gray rightside'>
-                  <i className='fas fa-plus-circle' /> Add or update your resume (in pdf)
-                    </Link>
-                Resume
-
-              </h2>
-
-            </div> */}
-
-
-
-              <div className='profile-resume bg-white p-2'>
-
-                {/* {profile.resume && profile.resume.url !== '' && (<ProfileResume resume={profile.resume} edit={
-                  auth.isAuthenticated &&
-                  auth.loading === false &&
-                  auth.user._id === profile.user._id} />)} */}
-
-
-
-
                 <h2 className='text-primary'>
                   Resume
               {auth.isAuthenticated &&
