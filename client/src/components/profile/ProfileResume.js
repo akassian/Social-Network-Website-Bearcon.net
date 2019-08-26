@@ -3,48 +3,55 @@ import PropTypes from 'prop-types';
 // import Moment from 'react-moment';
 // import moment from 'moment';
 import { Link, withRouter } from 'react-router-dom';
-//import { deleteCourse } from '../../actions/profile';
+import { deleteResume } from '../../actions/profile';
 import { connect } from 'react-redux';
 
 const ProfileResume = ({
   resume: { url, _id },
   history,
-  //deleteCourse,
+  deleteResume,
   edit
 }) => (
-    <div>
-      {/* <h3 className='text-dark'>
-      {edit && (
-        <Fragment>
-          <button
-            title='Delete row'
-            onClick={() => deleteCourse(history, _id)}
-            className='btn-del rightside'
-          >
-            <i className='fas fa-minus-circle' />
-          </button>
-          <Link title='Edit' to={`/edit-course/${_id}`} className='rightside'>
-            <i className='fas fa-edit' />
-          </Link>
-        </Fragment>
-      )}
-    </h3> */}
-      {/* <p>{title}</p> */}
+    <Fragment>
+      <Fragment>
+
+        <h3 className='text-dark'>
+          {edit && (
+
+            <button
+              title='Delete Resume'
+              onClick={() => deleteResume(history)}
+              className='btn-del rightside'
+            >
+              <i className='fas fa-minus-circle' />
+            </button>)}
+        </h3>
+
+        {/* <h2 className='text-primary'>
+          Resume
+              {edit &&
+            (<Link to='/upload-resume' className='btn btn-gray rightside'>
+              <i className='fas fa-plus-circle' /> Add or update your resume (in pdf)
+                    </Link>
+            )}
+        </h2> */}
+
+      </Fragment>
+
       <br />
       <br />
       <object width="100%" height="400" data={url}
         type="application/pdf">   </object>
 
-    </div>
+    </Fragment >
   );
 
 ProfileResume.propTypes = {
   resume: PropTypes.object.isRequired,
-  //deleteCourse: PropTypes.func.isRequired
+  deleteResume: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  {}
-  //{ deleteCourse }
+  { deleteResume }
 )(withRouter(ProfileResume));

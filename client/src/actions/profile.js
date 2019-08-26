@@ -514,4 +514,23 @@ export const uploadResume = (resume, history) => async dispatch => {
     });
   }
 };
+// Delete resume
+export const deleteResume = (history) => async dispatch => {
+  try {
+    const res = await axios.delete(`http://localhost:5000/api/profile/resume`);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data
+    });
+    console.log(res.data);
+    history.push('/me');
+    dispatch(setAlert('Resume Removed', 'success'));
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
 

@@ -18,10 +18,10 @@ const ProfileTop = ({
   return (
     <div className='profile-top bg-primary p-2'>
       <div className='cover-overlay' />
-      <div class='bg-cover'>
+      <div className='bg-cover'>
         <img src={cover} alt='' />
       </div>
-      <div class='content'>
+      <div className='content'>
         {edit && (
           <Link to={'/edit-profile'}>
             <i
@@ -31,7 +31,7 @@ const ProfileTop = ({
           </Link>
         )}
         <div className=''>
-          <div class='rounder'>
+          <div className='rounder'>
             <img
               className='round-img'
               src={picture === '' ? avatar : picture}
@@ -95,10 +95,6 @@ const ProfileTop = ({
                 <i className='fab fa-instagram fa-2x' />
               </a>
             )}
-            {/* <object width="100%" height="400" data="https://res.cloudinary.com/akass1122/image/upload/v1566795405/erg0uqvu1wv2ooyax5sw.pdf" type="application/pdf">   </object>
-
-            <object width="100%" height="400" data={resume.url} type="application/pdf">   </object> */}
-
             <br />
             <br />
             <p>

@@ -663,6 +663,24 @@ router.post('/resume', auth, async (req, res) => {
   }
 });
 
+//@route DELETE api/profile / resume
+//@desc Delete resume from profile
+//@access private
+router.delete('/resume', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    profile.resume.url = '';
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+module.exports = router;
+
+
 //==========================
 
 // Upload picture to store on our server. We don't use for this version of project, as we store

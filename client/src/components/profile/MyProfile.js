@@ -114,13 +114,21 @@ const MyProfile = ({
                   )}
               </div>
 
-              <div className='profile-github bg-white p-2'>
+              {/* <div className='profile-github bg-white p-2'>
 
                 {profile.githubusername && (
                   <ProfileGithub username={profile.githubusername} />
                 )}
+              </div> */}
+
+
+
+              <div className='profile-github bg-white p-2'>
+                {profile.githubusername && (
+                  <ProfileGithub username={profile.githubusername} edit={true} />
+                )}
               </div>
-              <div className='profile-resume bg-white p-2'>
+              {/* <div className='profile-resume bg-white p-2'>
                 <h2 className='text-primary'>
                   Resume
               {auth.isAuthenticated &&
@@ -132,7 +140,56 @@ const MyProfile = ({
                     )}
                 </h2>
                 {profile.resume && profile.resume.url !== '' && (<ProfileResume resume={profile.resume} />)}
+              </div> */}
+
+
+              {/* <div className='profile-resume bg-white p-2'>
+                {profile.resume && profile.resume.url !== '' && (<ProfileResume resume={profile.resume} edit={true} />)}
+              </div> */}
+
+              {/* <div className='profile-resume bg-white p-2'>
+                <h2 className='text-primary'>
+                  Resume
+              {auth.isAuthenticated &&
+                    auth.loading === false &&
+                    auth.user._id === profile.user._id &&
+                    (<Link to='/upload-resume' className='btn btn-gray rightside'>
+                      <i className='fas fa-plus-circle' /> Add or update your resume (in pdf)
+                    </Link>
+                    )}
+                </h2>
+                {profile.resume && profile.resume.url !== '' && (<ProfileResume resume={profile.resume} edit={true} />)}
+                
+              </div> */}
+
+
+              <div className='profile-resume bg-white p-2'>
+
+                {/* {profile.resume && profile.resume.url !== '' && (<ProfileResume resume={profile.resume} edit={
+  auth.isAuthenticated &&
+  auth.loading === false &&
+  auth.user._id === profile.user._id} />)} */}
+
+                <h2 className='text-primary'>
+                  Resume
+{auth.isAuthenticated &&
+                    auth.loading === false &&
+                    auth.user._id === profile.user._id &&
+                    (<Link to='/upload-resume' className='btn btn-gray rightside'>
+                      <i className='fas fa-plus-circle' /> Add or update your resume (in pdf)
+                </Link>
+                    )}
+                </h2>
+                {profile.resume && profile.resume.url !== '' && (<ProfileResume resume={profile.resume} edit={
+                  auth.isAuthenticated &&
+                  auth.loading === false &&
+                  auth.user._id === profile.user._id} />)}
               </div>
+
+
+
+
+
             </div>
           </Fragment>
         )}

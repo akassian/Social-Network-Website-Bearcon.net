@@ -12,44 +12,44 @@ const ProfileExperience = ({
   history,
   edit
 }) => (
-  <div>
-    <h3 className='text-dark'>
-      {company}
-      {edit && (
-        <Fragment>
-          <button
-            title='Delete row'
-            onClick={() => deleteExperience(history, _id)}
-            className='btn-del rightside'
-          >
-            {console.log(_id)}
-            <i className='fas fa-minus-circle' />
-          </button>
-          <Link
-            title='Edit'
-            to={`/edit-experience/${_id}`}
-            className='rightside'
-          >
-            <i className='fas fa-edit' />
-          </Link>
-        </Fragment>
-      )}
-    </h3>
-    <p>
-      <Moment format='MM/DD/YYYY'>{moment.utc(from)}</Moment> -{' '}
-      {current ? ' Now' : <Moment format='MM/DD/YYYY'>{moment.utc(to)}</Moment>}
-    </p>
-    <p>
-      <strong>Position: </strong> {title}
-    </p>
-    <p>
-      <strong>Location: </strong> {location}
-    </p>
-    <p>
-      <strong>Description: </strong> {description}
-    </p>
-  </div>
-);
+    <div>
+      <h3 className='text-dark'>
+        {company}
+        {edit && (
+          <Fragment>
+            <button
+              title='Delete row'
+              onClick={() => deleteExperience(history, _id)}
+              className='btn-del rightside'
+            >
+              {/* {console.log(_id)} */}
+              <i className='fas fa-minus-circle' />
+            </button>
+            <Link
+              title='Edit'
+              to={`/edit-experience/${_id}`}
+              className='rightside'
+            >
+              <i className='fas fa-edit' />
+            </Link>
+          </Fragment>
+        )}
+      </h3>
+      <p>
+        <Moment format='MM/DD/YYYY'>{moment.utc(from)}</Moment> -{' '}
+        {current ? ' Now' : <Moment format='MM/DD/YYYY'>{moment.utc(to)}</Moment>}
+      </p>
+      <p>
+        <strong>Position: </strong> {title}
+      </p>
+      <p>
+        <strong>Location: </strong> {location}
+      </p>
+      <p>
+        <strong>Description: </strong> {description}
+      </p>
+    </div>
+  );
 
 ProfileExperience.propTypes = {
   experience: PropTypes.object.isRequired,
