@@ -72,23 +72,23 @@ const Profile = ({
                     </Link>
                     )}
                 </h2>
-                {profile.experience.length > 0 ? (
-                  <Fragment>
-                    {profile.experience.map(experience => (
-                      <ProfileExperience
-                        key={experience._id}
-                        experience={experience}
-                        edit={
-                          auth.isAuthenticated &&
-                          auth.loading === false &&
-                          auth.user._id === profile.user._id
-                        }
-                      />
-                    ))}
-                  </Fragment>
-                ) : (
+                {/* {profile.experience.length > 0 ? ( */}
+                <Fragment>
+                  {profile.experience.map(experience => (
+                    <ProfileExperience
+                      key={experience._id}
+                      experience={experience}
+                      edit={
+                        auth.isAuthenticated &&
+                        auth.loading === false &&
+                        auth.user._id === profile.user._id
+                      }
+                    />
+                  ))}
+                </Fragment>
+                {/* ) : (
                     <h4>No experience listed</h4>
-                  )}
+                  )} */}
               </div>
 
               <div className='profile-edu bg-white p-2'>
@@ -105,23 +105,23 @@ const Profile = ({
                     </Link>
                     )}
                 </h2>
-                {profile.education.length > 0 ? (
-                  <Fragment>
-                    {profile.education.map(education => (
-                      <ProfileEducation
-                        key={education._id}
-                        education={education}
-                        edit={
-                          auth.isAuthenticated &&
-                          auth.loading === false &&
-                          auth.user._id === profile.user._id
-                        }
-                      />
-                    ))}
-                  </Fragment>
-                ) : (
+                {/* {profile.education.length > 0 ? ( */}
+                <Fragment>
+                  {profile.education.map(education => (
+                    <ProfileEducation
+                      key={education._id}
+                      education={education}
+                      edit={
+                        auth.isAuthenticated &&
+                        auth.loading === false &&
+                        auth.user._id === profile.user._id
+                      }
+                    />
+                  ))}
+                </Fragment>
+                {/* ) : (
                     <h4>No education listed</h4>
-                  )}
+                  )} */}
               </div>
               <div className='profile-course bg-white p-2'>
                 <h2 className='text-primary'>
@@ -135,23 +135,47 @@ const Profile = ({
                     )}
                 </h2>
                 <br />
-                {profile.courses.length > 0 ? (
-                  <Fragment>
-                    {profile.courses.map(course => (
-                      <ProfileCourse
-                        key={course._id}
-                        course={course}
-                        edit={
-                          auth.isAuthenticated &&
-                          auth.loading === false &&
-                          auth.user._id === profile.user._id
-                        }
-                      />
-                    ))}
-                  </Fragment>
-                ) : (
+                {/* {profile.courses.length > 0 ? ( */}
+                <Fragment>
+                  {profile.courses.map(course => (
+                    <ProfileCourse
+                      key={course._id}
+                      course={course}
+                      edit={
+                        auth.isAuthenticated &&
+                        auth.loading === false &&
+                        auth.user._id === profile.user._id
+                      }
+                    />
+                  ))}
+                </Fragment>
+                {/* ) : (
                     <h4>No courses listed</h4>
-                  )}
+                  )} */}
+              </div>
+              <div className='profile-github bg-white p-2'>
+
+                {auth.isAuthenticated &&
+                  auth.loading === false &&
+                  auth.user._id === profile.user._id && (
+                    <Link to={'/edit-profile'}>
+                      <i
+                        title='Edit'
+
+                        className='fas fa-edit rightside bigger text-primary'
+                      />
+
+                    </Link>)}
+
+                <h2 className='text-primary my-1'>Github Repos</h2>
+
+                {profile.githubusername && (
+                  <ProfileGithub username={profile.githubusername} edit={
+                    auth.isAuthenticated &&
+                    auth.loading === false &&
+                    auth.user._id === profile.user._id
+                  } />
+                )}
               </div>
               <div className='profile-resume bg-white p-2'>
                 <h2 className='text-primary'>

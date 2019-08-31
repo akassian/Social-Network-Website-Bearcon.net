@@ -11,18 +11,7 @@ const ProfileGithub = ({ username, getGithubRepos, repos, edit }) => {
   }, [getGithubRepos]);
 
   return (
-    <div className='profile-github'>
-
-      {edit && (
-        <Link to={'/edit-profile'}>
-          <i
-            title='Edit'
-
-            className='fas fa-edit rightside bigger'
-          />
-        </Link>
-      )}
-      <h2 className='text-primary my-1'>Github Repos</h2>
+    <div className='profile-github text-primary'>
 
       {repos === null ? (
         <Spinner />

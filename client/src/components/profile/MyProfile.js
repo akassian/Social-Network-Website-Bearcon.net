@@ -48,21 +48,16 @@ const MyProfile = ({
                   </Link>
                   )}
                 </h2>
-                {profile.experience.length > 0 ? (
-                  <Fragment>
-                    {profile.experience.map(experience => (
-                      <ProfileExperience
-                        key={experience._id}
-                        experience={experience}
-                        edit={true}
-                      />
-                    ))}
-                  </Fragment>
-                ) : (
-                    <h4>No experience listed</h4>
-                  )}
+                <Fragment>
+                  {profile.experience.map(experience => (
+                    <ProfileExperience
+                      key={experience._id}
+                      experience={experience}
+                      edit={true}
+                    />
+                  ))}
+                </Fragment>
               </div>
-
               <div className='profile-edu bg-white p-2'>
                 <h2 className='text-primary'>
                   <i className='fas fa-user-graduate' /> Education
@@ -72,21 +67,16 @@ const MyProfile = ({
                   </Link>
                   )}
                 </h2>
-                {profile.education.length > 0 ? (
-                  <Fragment>
-                    {profile.education.map(education => (
-                      <ProfileEducation
-                        key={education._id}
-                        education={education}
-                        edit={true}
-                      />
-                    ))}
-                  </Fragment>
-                ) : (
-                    <h4>No education listed</h4>
-                  )}
+                <Fragment>
+                  {profile.education.map(education => (
+                    <ProfileEducation
+                      key={education._id}
+                      education={education}
+                      edit={true}
+                    />
+                  ))}
+                </Fragment>
               </div>
-
               <div className='profile-course bg-white p-2'>
                 <h2 className='text-primary'>
                   <i className='fas fa-user-graduate' /> Courses
@@ -98,26 +88,31 @@ const MyProfile = ({
                     )}
                 </h2>
                 <br />
-                {profile.courses.length > 0 ? (
-                  <Fragment>
-                    {profile.courses.map(course => (
-                      <ProfileCourse
-                        key={course._id}
-                        course={course}
-                        edit={true}
-                      />
-                    ))}
-                  </Fragment>
-                ) : (
-                    <h4>No courses listed</h4>
-                  )}
+                <Fragment>
+                  {profile.courses.map(course => (
+                    <ProfileCourse
+                      key={course._id}
+                      course={course}
+                      edit={true}
+                    />
+                  ))}
+                </Fragment>
               </div>
-
               <div className='profile-github bg-white p-2'>
+                <Link to={'/edit-profile'}>
+                  <i
+                    title='Edit'
+                    className='fas fa-edit rightside bigger text-primary'
+                  />
+                </Link>
+                <h2 className='text-primary my-1'>Github Repos</h2>
                 {profile.githubusername && (
-                  <ProfileGithub username={profile.githubusername} edit={true} />
+                  <ProfileGithub username={profile.githubusername} edit={
+                    true
+                  } />
                 )}
               </div>
+
               <div className='profile-resume bg-white p-2'>
                 <h2 className='text-primary'>
                   Resume
