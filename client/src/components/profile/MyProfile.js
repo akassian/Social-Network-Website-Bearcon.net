@@ -99,13 +99,17 @@ const MyProfile = ({
                 </Fragment>
               </div>
               <div className='profile-github bg-white p-2'>
-                <Link to={'/edit-profile'}>
-                  <i
-                    title='Edit'
-                    className='fas fa-edit rightside bigger text-primary'
-                  />
-                </Link>
-                <h2 className='text-primary my-1'>Github Repos</h2>
+                {auth.isAuthenticated &&
+                  auth.loading === false && (
+                    <Link to={'/edit-profile'}>
+                      <i
+                        title='Edit'
+                        className='fas fa-edit rightside bigger text-primary'
+                      />
+                    </Link>)}
+                < h2 className='text-primary my-1'>
+                  <i class="fab fa-github"></i> {'  '}
+                  Github Repos</h2>
                 {profile.githubusername && (
                   <ProfileGithub username={profile.githubusername} edit={
                     true
@@ -115,6 +119,7 @@ const MyProfile = ({
 
               <div className='profile-resume bg-white p-2'>
                 <h2 className='text-primary'>
+                  <i class="fas fa-file-pdf"></i> {'   '}
                   Resume
                     <Link to='/upload-resume' className='btn btn-gray rightside'>
                     <i className='fas fa-plus-circle' /> Add or update your resume (in pdf)

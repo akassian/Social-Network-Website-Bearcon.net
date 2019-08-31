@@ -72,7 +72,6 @@ const Profile = ({
                     </Link>
                     )}
                 </h2>
-                {/* {profile.experience.length > 0 ? ( */}
                 <Fragment>
                   {profile.experience.map(experience => (
                     <ProfileExperience
@@ -86,11 +85,7 @@ const Profile = ({
                     />
                   ))}
                 </Fragment>
-                {/* ) : (
-                    <h4>No experience listed</h4>
-                  )} */}
               </div>
-
               <div className='profile-edu bg-white p-2'>
                 <h2 className='text-primary'>
                   <i className='fas fa-user-graduate' /> Education
@@ -105,7 +100,6 @@ const Profile = ({
                     </Link>
                     )}
                 </h2>
-                {/* {profile.education.length > 0 ? ( */}
                 <Fragment>
                   {profile.education.map(education => (
                     <ProfileEducation
@@ -119,9 +113,6 @@ const Profile = ({
                     />
                   ))}
                 </Fragment>
-                {/* ) : (
-                    <h4>No education listed</h4>
-                  )} */}
               </div>
               <div className='profile-course bg-white p-2'>
                 <h2 className='text-primary'>
@@ -135,7 +126,6 @@ const Profile = ({
                     )}
                 </h2>
                 <br />
-                {/* {profile.courses.length > 0 ? ( */}
                 <Fragment>
                   {profile.courses.map(course => (
                     <ProfileCourse
@@ -149,26 +139,18 @@ const Profile = ({
                     />
                   ))}
                 </Fragment>
-                {/* ) : (
-                    <h4>No courses listed</h4>
-                  )} */}
               </div>
               <div className='profile-github bg-white p-2'>
-
                 {auth.isAuthenticated &&
                   auth.loading === false &&
                   auth.user._id === profile.user._id && (
                     <Link to={'/edit-profile'}>
                       <i
                         title='Edit'
-
                         className='fas fa-edit rightside bigger text-primary'
                       />
-
                     </Link>)}
-
-                <h2 className='text-primary my-1'>Github Repos</h2>
-
+                <h2 className='text-primary my-1'><i class="fab fa-github"></i> {'  '}Github Repos</h2>
                 {profile.githubusername && (
                   <ProfileGithub username={profile.githubusername} edit={
                     auth.isAuthenticated &&
@@ -179,6 +161,7 @@ const Profile = ({
               </div>
               <div className='profile-resume bg-white p-2'>
                 <h2 className='text-primary'>
+                  <i class="fas fa-file-pdf"></i> {'   '}
                   Resume
               {auth.isAuthenticated &&
                     auth.loading === false &&
