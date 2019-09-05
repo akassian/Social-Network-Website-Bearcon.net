@@ -11,65 +11,65 @@ const PostItem = ({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date },
+  post: { _id, text, name, avatar, picture, user, likes, comments, date },
   showActions
 }) => (
-  <div className='post bg-white p-1 my-1'>
-    <div>
-      <Link to={`/profile/${user}`}>
-        <img className='round-img' src={avatar} alt='' />
-        <h4>{name}</h4>
-      </Link>
-    </div>
-    <div>
-      <p className='my-1'>{text}</p>
-      <p className='post-date'>
-        {/* Posted on <Moment format='lll'>{date}</Moment>
+    <div className='post bg-white p-1 my-1'>
+      <div>
+        <Link to={`/profile/${user}`}>
+          <img className='round-img' src={picture === '' ? avatar : picture} alt='' />
+          <h4>{name}</h4>
+        </Link>
+      </div>
+      <div>
+        <p className='my-1'>{text}</p>
+        <p className='post-date'>
+          {/* Posted on <Moment format='lll'>{date}</Moment>
          */}
-        {/* <Moment fromNow>{moment.utc(date)}</Moment> */}
-        <Moment fromNow>{date}</Moment>
-        {/* <p>Posted {moment(date).calendar()}</p>
+          {/* <Moment fromNow>{moment.utc(date)}</Moment> */}
+          <Moment fromNow>{date}</Moment>
+          {/* <p>Posted {moment(date).calendar()}</p>
         <div>Posted {moment(date).format('MM/DD/YYYY')}</div>
         Posted on <Moment format='lll'>{date}</Moment> */}
-      </p>
+        </p>
 
-      {showActions && (
-        <Fragment>
-          <button
-            onClick={() => addLike(_id)}
-            type='button'
-            className='btn btn-gray'
-          >
-            <i className='fas fa-thumbs-up' />{' '}
-            <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
-          </button>
-          <button
-            onClick={() => removeLike(_id)}
-            type='button'
-            className='btn btn-gray'
-          >
-            <i className='fas fa-thumbs-down' />
-          </button>
-          <Link to={`/posts/${_id}`} className='btn btn-primary'>
-            Discussion{' '}
-            {comments.length > 0 && (
-              <span className='comment-count'>{comments.length}</span>
-            )}
-          </Link>
-          {!auth.loading && user === auth.user._id && (
+        {showActions && (
+          <Fragment>
             <button
-              onClick={() => deletePost(_id)}
+              onClick={() => addLike(_id)}
               type='button'
-              className='btn-del rightside top1rem'
+              className='btn btn-gray'
             >
-              <i className='fa fa-times-circle' />
+              <i className='fas fa-thumbs-up' />{' '}
+              <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
             </button>
-          )}
-        </Fragment>
-      )}
+            <button
+              onClick={() => removeLike(_id)}
+              type='button'
+              className='btn btn-gray'
+            >
+              <i className='fas fa-thumbs-down' />
+            </button>
+            <Link to={`/posts/${_id}`} className='btn btn-primary'>
+              Discussion{' '}
+              {comments.length > 0 && (
+                <span className='comment-count'>{comments.length}</span>
+              )}
+            </Link>
+            {!auth.loading && user === auth.user._id && (
+              <button
+                onClick={() => deletePost(_id)}
+                type='button'
+                className='btn-del rightside top1rem'
+              >
+                <i className='fa fa-times-circle' />
+              </button>
+            )}
+          </Fragment>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
 
 PostItem.defaultProps = {
   showActions: true
