@@ -35,12 +35,12 @@ if (process.env.NODE_ENV === 'production') {
 // UPDATE ALL DOCUMENTS IN DATABASE BY ADDING SOME FIELDS
 // Callback function, numAffected  is number of affected documents and other info
 
-// const cb = function (err, numAffected) {
-//   if (err) {
-//     console.error(err.message);
-//   }
-//   console.log('num=', numAffected);
-// };
+const cb = function (err, numAffected) {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('num=', numAffected);
+};
 
 // User.update(
 //   { name: "Keith Wong" }, // conditions
