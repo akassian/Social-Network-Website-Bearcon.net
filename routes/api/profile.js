@@ -563,36 +563,36 @@ router.post(
 
 //@access private
 
-// const multer = require('multer');
-// const cloudinary = require('cloudinary');
+const multer = require('multer');
+const cloudinary = require('cloudinary');
 
-// cloudinary.config({
-//   cloud_name: config.get('cloud_name'),
-//   api_key: config.get('api_key'),
-//   api_secret: config.get('api_secret')
-// });
+cloudinary.config({
+  cloud_name: config.get('cloud_name'),
+  api_key: config.get('api_key'),
+  api_secret: config.get('api_secret')
+});
 
-// const storage = multer.memoryStorage();
-// const upload = multer({ storage });
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 
-// router.post('/upload', [auth, upload.single('photo')], async (req, res) => {
-//   cloudinary.uploader
-//     .upload_stream(async result => {
-//       try {
-//         let profile = await Profile.findOne({ user: req.user.id });
-//         profile.images.picture = result.secure_url.toString();
-//         await profile.save(function (err) {
-//           if (err) console.log('error while saving');
-//         });
-//         return res.json(profile);
-//       } catch (err) {
-//         console.error(err.message);
-//         res.status(500).send('Server error');
-//       }
-//     })
-//     .end(req.file.buffer);
-// });
+router.post('/upload', [auth, upload.single('photo')], async (req, res) => {
+  cloudinary.uploader
+    .upload_stream(async result => {
+      try {
+        let profile = await Profile.findOne({ user: req.user.id });
+        profile.images.picture = result.secure_url.toString();
+        await profile.save(function (err) {
+          if (err) console.log('error while saving');
+        });
+        return res.json(profile);
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+      }
+    })
+    .end(req.file.buffer);
+});
 
 
 //===============
