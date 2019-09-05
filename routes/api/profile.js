@@ -556,6 +556,25 @@ router.post(
   }
 );
 
+//@route POST api/profile/upload
+//@desc upload avatar from client to Cloudinary through our server, using Multer.
+//We are not using it in the current version of our project.
+// We instead upload avatar from client directly to Cloudinary.
+
+//@access private
+
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+
+cloudinary.config({
+  cloud_name: config.get('cloud_name'),
+  api_key: config.get('api_key'),
+  api_secret: config.get('api_secret')
+});
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 
 router.post('/upload', [auth, upload.single('photo')], async (req, res) => {
   cloudinary.uploader
@@ -574,6 +593,9 @@ router.post('/upload', [auth, upload.single('photo')], async (req, res) => {
     })
     .end(req.file.buffer);
 });
+
+
+//===============
 
 //@route POST api/profile/avatar
 //@desc upload avatar for profile
