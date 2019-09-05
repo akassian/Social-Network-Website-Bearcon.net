@@ -106,8 +106,6 @@ router.post(
       console.error(err.message);
       res.status(500).send('Server error');
     }
-
-    // console.log(profileFields.social.twitter);
     res.send('Hello');
   }
 );
@@ -335,7 +333,6 @@ router.post(
     ]
   ],
   async (req, res) => {
-    //console.log('In API ', req.params.edu_id);
     const errors = validationResult(req);
     if (!errors.isEmpty) {
       return res.status(400).json({ errors: errors.array() });
@@ -358,17 +355,13 @@ router.post(
       current,
       description
     };
-    // console.log('inside');
     try {
-      //console.log('In API Try ', req.params.edu_id);
       const profile = await Profile.findOne({ user: req.user.id });
       //Get replace index
       const replaceIndex = profile.education
         .map(item => item.id)
         .indexOf(req.params.edu_id);
       profile.education.splice(replaceIndex, 1, newEdu);
-      // profile.education.unshift(newEdu);
-
       await profile.save();
       //console.log(profile);
       res.json(profile);
@@ -427,7 +420,6 @@ router.post(
       const replaceIndex = profile.experience
         .map(item => item.id)
         .indexOf(req.params.exp_id);
-      // profile.experience.unshift(newExp);
       profile.experience.splice(replaceIndex, 1, newExp);
 
       await profile.save();
@@ -539,7 +531,6 @@ router.post(
     ]
   ],
   async (req, res) => {
-    //console.log('In API ', req.params.edu_id);
     const errors = validationResult(req);
     if (!errors.isEmpty) {
       return res.status(400).json({ errors: errors.array() });
@@ -548,17 +539,13 @@ router.post(
     const newCourse = {
       title
     };
-    // console.log('inside');
     try {
-      //console.log('In API Try ', req.params.edu_id);
       const profile = await Profile.findOne({ user: req.user.id });
       //Get replace index
       const replaceIndex = profile.courses
         .map(item => item.id)
         .indexOf(req.params.edu_id);
       profile.courses.splice(replaceIndex, 1, newCourse);
-      // profile.courses.unshift(newCourse);
-
       await profile.save();
       //console.log(profile);
       res.json(profile);
@@ -614,7 +601,6 @@ router.post('/avatar', auth, async (req, res) => {
   try {
     // console.log("server: req.body:  ", req.body);
     let profile = await Profile.findOne({ user: req.user.id });
-    //console.log("profile:", profile);
     profile.images.picture = req.body.picture;
     await profile.save();
     //console.log("changed profile:", profile);
@@ -633,7 +619,6 @@ router.post('/cover', auth, async (req, res) => {
   try {
     // console.log("server: req.body:  ", req.body);
     let profile = await Profile.findOne({ user: req.user.id });
-    //console.log("profile:", profile);
     profile.images.cover = req.body.cover;
     await profile.save();
     //console.log("changed profile:", profile);
@@ -650,12 +635,9 @@ router.post('/cover', auth, async (req, res) => {
 
 router.post('/resume', auth, async (req, res) => {
   try {
-    // console.log("server: req.body:  ", req.body);
     let profile = await Profile.findOne({ user: req.user.id });
-    //console.log("profile:", profile);
     profile.resume.url = req.body.url;
     await profile.save();
-    //console.log("changed profile:", profile);
     return res.json(profile);
   } catch (err) {
     console.error(err.message);
