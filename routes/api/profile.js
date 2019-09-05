@@ -486,7 +486,7 @@ router.post(
     };
     try {
       const profile = await Profile.findOne({ user: req.user.id });
-      profile.courses.unshift(newCourse);
+      profile.courses.push(newCourse);
       await profile.save();
       res.json(profile);
     } catch (err) {
