@@ -18,8 +18,8 @@ const ProfileAbout = ({
               <i title='Edit' className='fas fa-edit bigger rightside' />
             </Link>
           )}
-          <h2 className='text-primary'>About Me</h2>
-          <p>{bio}</p>
+          <h2 className='text-primary text-center'>About Me</h2>
+          <p className='text-left'>{bio}</p>
           <div className='line' />
         </Fragment>
       )}

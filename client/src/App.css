@@ -89,6 +89,9 @@ img {
 .text-center {
     text-align: center;
 }
+.text-left {
+    text-align: left;
+}
 
 .text-primary {
     color: var(--primary-color);
@@ -897,4 +900,8 @@ button {
 
 i {
     padding-right: .25rem;
+}
+
+.center {
+
 }
