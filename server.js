@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 // UPDATE ALL DOCUMENTS IN DATABASE BY ADDING SOME FIELDS
 // Callback function, numAffected  is number of affected documents and other info
 
-// const cb = function(err, numAffected) {
+// const cb = function (err, numAffected) {
 //   if (err) {
 //     console.error(err.message);
 //   }
@@ -48,6 +48,8 @@ if (process.env.NODE_ENV === 'production') {
 //   { multi: true },  // options
 //   cb // callback
 // );
+
+
 
 //User.update({}, { $set: { picture: "", background: "" } }, { multi: true }, cb);
 

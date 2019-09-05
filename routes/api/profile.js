@@ -580,9 +580,9 @@ const multer = require('multer');
 const cloudinary = require('cloudinary');
 
 cloudinary.config({
-  cloud_name: 'akass1122',
-  api_key: '143449497712777',
-  api_secret: '16JwUkJF4jkbcPW6ADk6KbHXysU'
+  cloud_name: config.get('cloud_name'),
+  api_key: config.get('api_key'),
+  api_secret: config.get('api_secret')
 });
 
 const storage = multer.memoryStorage();
@@ -595,7 +595,7 @@ router.post('/upload', [auth, upload.single('photo')], async (req, res) => {
         let profile = await Profile.findOne({ user: req.user.id });
         profile.images.picture = result.secure_url.toString();
         await profile.save(function (err) {
-          if (!err) console.log('success!');
+          if (err) console.log('error while saving');
         });
         return res.json(profile);
       } catch (err) {
