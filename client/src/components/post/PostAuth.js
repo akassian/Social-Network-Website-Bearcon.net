@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from '../posts/PostItem';
 import CommentForm from '../post/CommentForm';
-import CommentItem from '../post/CommentItem';
+import CommentItemAuth from '../post/CommentItemAuth';
 import { getPost } from '../../actions/post';
 
-const Post = ({ getPost, post: { post, loading }, match }) => {
+const PostAuth = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
     getPost(match.params.id);
   }, [getPost]);
@@ -21,16 +21,17 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
           Back To Posts
       </Link>
         <PostItem post={post} showActions={false} />
+        <CommentForm postId={post._id} />
         <div className='comments'>
           {post.comments.map(comment => (
-            <CommentItem key={comment._id} comment={comment} postId={post._id} />
+            <CommentItemAuth key={comment._id} comment={comment} postId={post._id} />
           ))}
         </div>
       </Fragment>
     );
 };
 
-Post.propTypes = {
+PostAuth.propTypes = {
   getPost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired
 };
@@ -42,4 +43,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getPost }
-)(Post);
+)(PostAuth);

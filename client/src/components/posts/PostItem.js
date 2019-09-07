@@ -4,17 +4,13 @@ import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { addLike, removeLike, deletePost } from '../../actions/post';
+//import { addLike, removeLike, deletePost } from '../../actions/post';
 
 const PostItem = ({
-  addLike,
-  removeLike,
-  deletePost,
-  auth,
   post: { _id, text, name, avatar, picture, user, likes, comments, date },
-  showActions
 }) => (
-    <div className='post bg-white p-1 my-1'>
+    < div className='post bg-white p-1 my-1' >
+      {/* {console.log("in PostItem, _id: ", _id)} */}
       <div>
         <Link to={`/profile/${user}`}>
           <img className='round-img' src={picture === '' ? avatar : picture} alt='' />
@@ -32,63 +28,17 @@ const PostItem = ({
         <div>Posted {moment(date).format('MM/DD/YYYY')}</div>
         Posted on <Moment format='lll'>{date}</Moment> */}
         </p>
-
-        {showActions && (
-          <Fragment>
-            <button
-              onClick={() => addLike(_id)}
-              type='button'
-              className='btn btn-gray'
-            >
-              <i className='fas fa-thumbs-up' />{' '}
-              <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
-            </button>
-            <button
-              onClick={() => removeLike(_id)}
-              type='button'
-              className='btn btn-gray'
-            >
-              <i className='fas fa-thumbs-down' />
-            </button>
-            <Link to={`/posts/${_id}`} className='btn btn-primary'>
-              Discussion{' '}
-              {comments.length > 0 && (
-                <span className='comment-count'>{comments.length}</span>
-              )}
-            </Link>
-            {!auth.loading && user === auth.user._id && (
-              <button
-                onClick={() => deletePost(_id)}
-                type='button'
-                className='btn-del rightside top1rem'
-              >
-                <i className='fa fa-times-circle' />
-              </button>
-            )}
-          </Fragment>
-        )}
+        <Link to={`/posts/${_id}`} className='btn btn-primary'>
+          Discussion{' '}
+          {comments.length > 0 && (
+            <span className='comment-count'>{comments.length}</span>
+          )}
+        </Link>
       </div>
-    </div>
+    </div >
   );
-
-PostItem.defaultProps = {
-  showActions: true
-};
 
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-  addLike: PropTypes.func.isRequired,
-  removeLike: PropTypes.func.isRequired,
-  deletePost: PropTypes.func.isRequired,
-  showActions: PropTypes.bool
 };
-
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-export default connect(
-  mapStateToProps,
-  { addLike, removeLike, deletePost }
-)(PostItem);
+export default PostItem;

@@ -15,7 +15,7 @@ import {
 export const getPosts = () => async dispatch => {
   try {
     const res = await axios.get('/api/posts');
-
+    //console.log("in action get /api/posts, res.data: ", res.data);
     dispatch({
       type: GET_POSTS,
       payload: res.data

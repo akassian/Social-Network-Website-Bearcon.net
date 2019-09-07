@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 //import moment from 'moment';
-//import { deleteComment } from '../../actions/post';
+import { deleteComment } from '../../actions/post';
 
-const CommentItem = ({
+const CommentItemAuth = ({
   postId,
   comment: { _id, text, name, avatar, picture, user, date },
+  auth,
+  deleteComment
 }) => (
     <div className='post bg-white p-1 my-1'>
       <div>
@@ -25,15 +27,24 @@ const CommentItem = ({
           {/* <Moment fromNow>{moment.utc(date)}</Moment> */}
           <Moment fromNow>{date}</Moment>
         </p>
+        {!auth.loading && user === auth.user._id && (
+          <button
+            onClick={() => deleteComment(postId, _id)}
+            type='button'
+            className='btn-del rightside'
+          >
+            <i className='fa fa-times-circle' />
+          </button>
+        )}
       </div>
     </div>
   );
 
-CommentItem.propTypes = {
+CommentItemAuth.propTypes = {
   postId: PropTypes.string.isRequired,
   comment: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  //deleteComment: PropTypes.func.isRequired
+  deleteComment: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -42,5 +53,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  //{ deleteComment }
-)(CommentItem);
+  { deleteComment }
+)(CommentItemAuth);

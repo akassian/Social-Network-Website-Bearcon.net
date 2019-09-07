@@ -7,7 +7,7 @@ const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
-//@route GET api/posts
+//@route POST api/posts
 //@desc Create post
 //@access private
 
@@ -48,7 +48,11 @@ router.post(
 //@route GET api/posts
 //@desc Get all posts
 //@access private
-router.get('/', auth, async (req, res) => {
+
+//router.get('/', auth, async (req, res) => {
+
+router.get('/', async (req, res) => {
+
   try {
     const posts = await Post.find().sort({ date: -1 });
     res.json(posts);
@@ -60,7 +64,8 @@ router.get('/', auth, async (req, res) => {
 //@route GET api/post/:id
 //@desc Get post by ID
 //@access private
-router.get('/:id', auth, async (req, res) => {
+//router.get('/:id', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) {

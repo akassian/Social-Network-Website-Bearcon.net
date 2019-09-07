@@ -21,7 +21,7 @@ const Navbar = ({
         </Link>
       </li>
       <li>
-        <Link to='/posts'>
+        <Link to='/posts-auth'>
           <i className='fas fa-comment' />
           <span className='hide-sm'>
             {''}
@@ -67,6 +67,15 @@ const Navbar = ({
           <span className='hide-sm'>
             {''}
             Profiles
+          </span>
+        </Link>
+      </li>
+      <li>
+        <Link to='/posts'>
+          <i className='fas fa-comment' />
+          <span className='hide-sm'>
+            {''}
+            Posts
           </span>
         </Link>
       </li>
