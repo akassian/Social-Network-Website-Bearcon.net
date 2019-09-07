@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
-import PostItem from '../posts/PostItem';
+import PostItemAuth from '../posts/PostItemAuth';
 import CommentForm from '../post/CommentForm';
 import CommentItemAuth from '../post/CommentItemAuth';
 import { getPost } from '../../actions/post';
@@ -17,10 +17,10 @@ const PostAuth = ({ getPost, post: { post, loading }, match }) => {
     <Spinner />
   ) : (
       <Fragment>
-        <Link to='/posts' className='btn'>
+        <Link to='/posts-auth' className='btn'>
           Back To Posts
       </Link>
-        <PostItem post={post} showActions={false} />
+        <PostItemAuth post={post} showActions={false} />
         <CommentForm postId={post._id} />
         <div className='comments'>
           {post.comments.map(comment => (
