@@ -14,7 +14,7 @@ const NotFound = () => {
           The site uses MERN stack: a Nodejs server, Expressjs, REST API, a Mongo database, and React with Redux for front end. It uses JSON Web Tokens (JWT) for authentication. User images and resume are stored on Cloudinary server. In this version of project, user files are uploaded from browser directly to Cloudinary. In another version of the project, user files are uploaded from browser to server, then from server to Cloudinary.
           </p>
         <br />
-        <p>Andrei K.</p>
+        <p>Andrei Kassiantchouk</p>
         <p> UC Berkeley Computer Science student</p>
         <p> akassweb@gmail.com</p>
       </div>

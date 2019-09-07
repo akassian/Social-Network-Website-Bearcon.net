@@ -104,7 +104,7 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
-// @route    DELETE api/posts/like/:id
+// @route    PUT api/posts/like/:id
 // @desc     Like a post
 // @access   Private
 router.put('/like/:id', auth, async (req, res) => {
@@ -125,7 +125,7 @@ router.put('/like/:id', auth, async (req, res) => {
   }
 });
 
-// @route    DELETE api/posts/unlike/:id
+// @route    PUT api/posts/unlike/:id
 // @desc     unLike a post
 // @access   Private
 router.put('/unlike/:id', auth, async (req, res) => {
@@ -149,7 +149,7 @@ router.put('/unlike/:id', auth, async (req, res) => {
   }
 });
 
-//@route GET api/posts/comment/:id
+//@route POST api/posts/comment/:id
 //@desc Comment on a post
 //@access private
 
@@ -170,12 +170,14 @@ router.post(
     }
     try {
       const user = await User.findById(req.user.id).select('-password');
+      const profile = await Profile.findOne({ user: req.user.id });
       const post = await Post.findById(req.params.id);
 
       const newComment = {
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
+        picture: profile.images.picture,
         user: req.user.id
       };
       post.comments.unshift(newComment);

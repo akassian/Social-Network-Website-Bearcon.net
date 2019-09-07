@@ -19,7 +19,9 @@ const ProfileAbout = ({
             </Link>
           )}
           <h2 className='text-primary text-center'>About Me</h2>
+          <br />
           <p className='text-left'>{bio}</p>
+          <br />
           <div className='line' />
         </Fragment>
       )}
