@@ -33,7 +33,7 @@ const ProfileTop = ({
         <div className=''>
           <div className='rounder'>
             <img
-              className='round-img'
+              className='round-img-profile'
               src={picture === '' ? avatar : picture}
               alt=''
             />

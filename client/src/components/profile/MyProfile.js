@@ -108,7 +108,7 @@ const MyProfile = ({
                       />
                     </Link>)}
                 < h2 className='text-primary my-1'>
-                  <i class="fab fa-github"></i> {'  '}
+                  <i className="fab fa-github"></i> {'  '}
                   Github Repos</h2>
                 {profile.githubusername && (
                   <ProfileGithub username={profile.githubusername} edit={
@@ -119,7 +119,7 @@ const MyProfile = ({
 
               <div className='profile-resume bg-white p-2'>
                 <h2 className='text-primary'>
-                  <i class="fas fa-file-pdf"></i> {'   '}
+                  <i className="fas fa-file-pdf"></i> {'   '}
                   Resume
                     <Link to='/upload-resume' className='btn btn-gray rightside'>
                     <i className='fas fa-plus-circle' /> Add or update your resume (in pdf)

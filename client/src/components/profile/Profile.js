@@ -150,7 +150,7 @@ const Profile = ({
                         className='fas fa-edit rightside bigger text-primary'
                       />
                     </Link>)}
-                <h2 className='text-primary my-1'><i class="fab fa-github"></i> {'  '}Github Repos</h2>
+                <h2 className='text-primary my-1'><i className="fab fa-github"></i> {'  '}Github Repos</h2>
                 {profile.githubusername && (
                   <ProfileGithub username={profile.githubusername} edit={
                     auth.isAuthenticated &&

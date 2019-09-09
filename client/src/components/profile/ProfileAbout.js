@@ -20,7 +20,7 @@ const ProfileAbout = ({
           )}
           <h2 className='text-primary text-center'>About Me</h2>
           <br />
-          <p className='text-left'>{bio}</p>
+          <p>{bio}</p>
           <br />
           <div className='line' />
         </Fragment>
@@ -30,8 +30,7 @@ const ProfileAbout = ({
         {skills.map((skill, index) => (
           <Fragment>
             <div key={index} className='p-1'>
-              {/* <i className='fas fa-check' />  */}
-              {skill}
+              <i className='fas fa-check' /> {skill}
             </div>
             <br />
 
