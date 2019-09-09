@@ -1,0 +1,9 @@
+{
+  "mongoURI": "your mongoURI",
+  "jwtSecret": "your JWT secret",
+  "githubClientId": "your github client ID",
+  "githubSecret": "your github secret",
+  "cloud_name": "your Cloudinary cloud name",
+  "api_key": "your Cloudinary api_key",
+  "api_secret": "your Cloudinary api secret"
+}
