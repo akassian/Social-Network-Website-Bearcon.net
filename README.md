@@ -6,4 +6,5 @@ The site uses MERN stack: a Nodejs server, Expressjs, REST API, a Mongo database
 User images and resume are stored on Cloudinary server. In this version of project, user files are uploaded from browser directly to Cloudinary. In another version of the project, user files are uploaded from browser to server, then from server to Cloudinary.
 
 The website is deployed on AWS.
+
 I used my two github accounts: akassian and akass1122 for this project.
